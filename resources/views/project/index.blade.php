@@ -2,13 +2,7 @@
 
 @section('content')
   
-  
   @include('partials.sidebar')
-
-  <style>
- 
-  </style>
-
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
@@ -21,7 +15,7 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Authors table</h6>
+              <h6>Project's List</h6>
             </div>
             <div class="card-header pb-0">
           <div class="d-flex flex-row justify-content-between">
@@ -142,7 +136,6 @@
                 <div class="pagination" >
                 {{ $projects->links() }}
                 </div>
-                
               </div>
             </div>
             
