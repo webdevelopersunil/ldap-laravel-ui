@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->required();
-            $table->string('user_id')->required();
-            $table->string('file')->nullable();
-            $table->string('url')->required()->unique();
-            $table->ipAddress('ip')->nullable();
-            $table->ipAddress('secondary_ip')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('operating_system')->required();
             $table->string('operating_system_version')->nullable();
             $table->string('language')->required();
@@ -27,10 +22,6 @@ return new class extends Migration
             $table->string('framework_version')->required();
             $table->string('database')->required();
             $table->string('database_version')->required();
-            $table->enum('is_exposed_to_content', ['YES', 'NO'])->required();
-            $table->enum('is_dr', ['YES', 'NO'])->required();
-            $table->enum('is_vapt_done', ['YES', 'NO'])->required();
-            $table->enum('is_backup', ['YES', 'NO'])->required();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -41,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('templates');
     }
 };
