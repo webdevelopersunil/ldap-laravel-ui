@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Template;
 
 class TemplateController extends Controller
 {
-    public function getTemplate(){
+    public function getTemplates(){
         
+        return Template::all();
     }
 }

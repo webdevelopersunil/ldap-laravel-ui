@@ -27,8 +27,8 @@ Route::get('ldap', function (Request $request) {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     
     Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');

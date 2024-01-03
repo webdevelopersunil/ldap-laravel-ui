@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            @if($templateOption == 0)
+            @if($templateOption == 0 )
                 <div class="container-fluid py-4">
                     <div class="card">
                         <div class="card-body pt-4 p-3">
@@ -344,28 +344,28 @@
                                 @endif
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="name" class="form-control-label">{{ __('Project Name') }}</label>
                                             <div class="@error('name')border border-danger rounded-3 @enderror">
-                                                <input class="form-control" value="{{ old('name') }}" type="text" placeholder="Project Name" id="name" name="name">
-                                                    @error('name')
-                                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                                    @enderror
+                                                <select class="form-select" aria-label="Default select example" name="template" id="template">
+                                                    <option selected disabled>Select a template</option>
+                                                    @foreach($templates as $index => $template)
+                                                        <option class="" value="{{$template->id}}">
+                                                            {{$template->operating_system}} - {{$template->operating_system_version}} | {{$template->language}} - {{$template->language_version}} | {{$template->framework}} - {{$template->framework_version}} | {{$template->database}} - {{$template->database_version}}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('name')
+                                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="url" class="form-control-label">{{ __('URL') }}</label>
-                                            <div class="@error('email')border border-danger rounded-3 @enderror">
-                                                <input class="form-control" value="{{ old('url') }}" type="url" placeholder="URL" id="url" name="url">
-                                                    @error('url')
-                                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                                    @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Next' }}</button>
                                 </div>
 
                             </form>
