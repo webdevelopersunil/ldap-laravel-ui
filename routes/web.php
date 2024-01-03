@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use LdapRecord\Container;
+use App\Http\Controllers\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,21 +20,22 @@ Route::get('ldap', function (Request $request) {
     $record = $connection->query()->findBy('samaccountname', 'A004112' );
     echo "<pre/>"; print_r($record); die;
 
-
-    // $ldapUser = Adldap::search()->users()->find(121149);
-    // echo "<pre>"; print_r($ldapUser);die;
-
-    // $user = Adldap::search()->users()->find(11008871);
-    // echo "<pre/>"; print_r($user); die;
-
-        //dd(Adldap::auth()->attempt('CN=Arun kumar Saw,DC=ONGC,DC=ONGCGroup,DC=co,DC=in', 'Welcome@123'));
         dd(Adldap::auth()->attempt('CN=Boardportal Admin,OU=Users,OU=ScopeMinar,OU=Delhi,OU=CorporateOffice,DC=ONGC,DC=ONGCGroup,DC=co,DC=in', 'SRee56##@ad'));
-});
-
-Route::get('/', function () {
-    return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
+    Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
+    Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
+});
+
+Route::group(['middleware' => 'guest'], function () {
+    
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
