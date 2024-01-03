@@ -67,14 +67,14 @@ class LoginController extends Controller
             if ( $connection->auth()->attempt($record['dn'], $request->password )) {
                 $user = User::where('cpfNo', $request->cpfNo)->first();
                 if(!$user) {
-                    User::create([
+                    $user = User::create([
                         'name' => $record['name'][0],
                         'email' => $record['mail'][0],
                         'cpfNo' => $request->cpfNo,
                         'password' => bcrypt($request->password),
                     ]);
                 }
-                Auth::login($user); 
+                Auth::login($user);
                 return redirect()->intended('home'); 
             }
 

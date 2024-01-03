@@ -22,7 +22,8 @@
               <div>
                   <h5 class="mb-0"></h5>
               </div>
-              <a href="{{ route('project.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a>
+              <!-- <a href="{{ route('project.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a> -->
+              <a href="" id="chooseTemplates" onclick="alert('dddd');" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a>
           </div>
           </div>
             <div class="card-body px-0 pt-0 pb-2">
