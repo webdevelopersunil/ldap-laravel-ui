@@ -28,8 +28,9 @@ class ProjectController extends Controller
         $frameworks         =   $this->getFrameworks();
         $databases          =   $this->getDatabase();
         $versions           =   $this->getVersions();
+        $templateOption     =   1;
 
-        return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions'));
+        return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions','templateOption'));
     }
 
     /**

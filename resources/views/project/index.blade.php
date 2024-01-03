@@ -22,8 +22,8 @@
               <div>
                   <h5 class="mb-0"></h5>
               </div>
-              <!-- <a href="{{ route('project.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a> -->
-              <a href="" id="chooseTemplates" onclick="alert('dddd');" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a>
+              <a href="{{ route('project.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a>
+              <!-- <a href="" id="chooseTemplates" onclick="alert('dddd');" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a> -->
           </div>
           </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -66,6 +66,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @if(isset($projects) && count($projects) >= 1)
                     @foreach($projects as $index => $project)
                       <tr>
                         <td>
@@ -131,6 +132,64 @@
                         </td>
                       </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <!-- <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1"> -->
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <p class="text-xs font-weight-bold mb-0"></p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">No Records Found</p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+
+
+                        <!-- <td class="align-middle text-center text-sm">
+                          <span class="badge badge-sm bg-gradient-success">Online</span>
+                        </td> -->
+
+                        <!-- <td class="align-middle text-center">
+                          <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                        </td> -->
+
+                        <td class="align-middle">
+                          <p class="text-xs font-weight-bold mb-0"></p>
+                        </td>
+                      </tr>
+                    @endif
 
                   </tbody>
                 </table>
