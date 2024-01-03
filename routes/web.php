@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use LdapRecord\Container;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,9 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+    
     Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
     Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
     Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
