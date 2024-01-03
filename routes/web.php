@@ -39,6 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'guest'], function () {
     
     Route::get('/', function () {
-        return view('welcome');
+        return view('auth.login');
     });
 });
