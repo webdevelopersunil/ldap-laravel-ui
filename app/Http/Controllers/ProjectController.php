@@ -67,9 +67,9 @@ class ProjectController extends Controller
             'database'                  => ['required'],
             'database_version'          => ['required','float'],
             'is_exposed_to_content'     => ['required', 'in:YES,NO'],
-            'is_dr'                     => ['in:YES,NO'],
-            'is_vapt_done'              => ['in:YES,NO'],
-            'is_backup'                 => ['in:YES,NO'],
+            'is_dr'                     => ['required','in:YES,NO'],
+            'is_vapt_done'              => ['required','in:YES,NO'],
+            'is_backup'                 => ['required','in:YES,NO'],
             'file'                      => ['mimes:jpeg,png,pdf,csv', 'max:2048'],
         ]);
 

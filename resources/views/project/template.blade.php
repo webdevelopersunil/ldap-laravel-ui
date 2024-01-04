@@ -60,6 +60,7 @@
                                         <div class="@error('name')border border-danger rounded-3 @enderror">
                                             <select class="form-select" aria-label="Default select example" name="template" id="template">
                                                 <option selected disabled>Select a template</option>
+                                                <option selected >Go With Blank</option>
                                                 @foreach($templates as $index => $template)
                                                     <option class="" value="{{$template->id}}">
                                                         {{$template->operating_system}} - {{$template->operating_system_version}} | {{$template->language}} - {{$template->language_version}} | {{$template->framework}} - {{$template->framework_version}} | {{$template->database}} - {{$template->database_version}}
@@ -81,7 +82,7 @@
                         </form>
                     </div>
                 </div>
-            </div>  
+            </div>
             
           </div>
         </div>

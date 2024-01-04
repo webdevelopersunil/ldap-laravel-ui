@@ -56,14 +56,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name" class="form-control-label">{{ __('Project Name') }} <span style="color:red;">*</span></label>
+                                        <label for="name" class="form-control-label">{{ __('Project Name') }}</label>
                                         <div class="@error('name')border border-danger rounded-3 @enderror">
-                                            <input class="form-control" 
-                                                value="{{ old('name') }}" 
-                                                type="text" 
-                                                placeholder="Project Name" 
-                                                id="name" 
-                                                name="name">
+                                            <input class="form-control" value="{{ old('name') }}" type="text" placeholder="Project Name" id="name" name="name">
                                                 @error('name')
                                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -72,7 +67,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="url" class="form-control-label">{{ __('URL') }} <span style="color:red;">*</span></label>
+                                        <label for="url" class="form-control-label">{{ __('URL') }}</label>
                                         <div class="@error('email')border border-danger rounded-3 @enderror">
                                             <input class="form-control" value="{{ old('url') }}" type="url" placeholder="URL" id="url" name="url">
                                                 @error('url')
@@ -86,7 +81,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ip" class="form-control-label">{{ __('IP') }} <span style="color:red;">*</span></label>
+                                        <label for="ip" class="form-control-label">{{ __('IP') }}</label>
                                         <div class="@error('ip')border border-danger rounded-3 @enderror">
                                             <input class="form-control" value="{{ old('ip') }}" type="text" placeholder="IP Address" id="ip" name="ip">
                                                 @error('ip')
@@ -97,7 +92,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="secondary_ip" class="form-control-label">{{ __('Secondary IP') }} ( <span style="color:#c04343;" >Comma Seperated IP</span> )</label>
+                                        <label for="secondary_ip" class="form-control-label">{{ __('Secondary IP') }}</label>
                                         <div class="@error('secondary_ip')border border-danger rounded-3 @enderror">
                                             <input class="form-control" value="{{ old('secondary_ip') }}" type="text" placeholder="Secondary IP" id="secondary_ip" name="secondary_ip">
                                                 @error('secondary_ip')
@@ -111,7 +106,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="operating_system" class="form-control-label">{{ __('Operating System') }} <span style="color:red;">*</span></label>
+                                        <label for="operating_system" class="form-control-label">{{ __('Operating System') }}</label>
                                         <div class="@error('operating_system')border border-danger rounded-3 @enderror">
                                                 
                                             <select class="form-control" id="operating_system" name="operating_system" >
@@ -131,17 +126,22 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="operating_system_version" class="form-control-label">{{ __('Operating System Version') }} <span style="color:red;">*</span></label>
+                                        <label for="operating_system_version" class="form-control-label">{{ __('Operating System Version') }}</label>
                                         <div class="@error('operating_system_version')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" 
-                                            value="@if(optional($template_obj)->operating_system_version){{ $template_obj->operating_system_version }}@else{{ old('operating_system_version') }}@endif" 
-                                            type="float" 
-                                            placeholder="Operating System Version" 
-                                            id="operating_system_version" 
-                                            name="operating_system_version">
-                                            @error('operating_system_version')
-                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                            <input class="form-control" value="@if( isset($template_obj->operating_system_version && !empty($template_obj->operating_system_version) ) {{ $template_obj->operating_system_version }} @else {{ old('operating_system_version') }} @endif" type="float" placeholder="Operating System Version" id="operating_system_version" name="operating_system_version">
+                                            <input class="form-control" value="{{ old('operating_system_version') }}" type="float" placeholder="Operating System Version" id="operating_system_version" name="operating_system_version">
+                                                <!-- <select class="form-control" id="operating_system_version" name="operating_system_version" >
+                                                    <option disabled selected>{{ __('Please Select') }}</option>
+                                                    @foreach($versions as $version)
+                                                        <option value="{{ $version }}"
+                                                        @if( isset($template_obj->operating_system_version) && $template_obj->operating_system_version == $version ) selected @endif >
+                                                        {{ $version }}
+                                                    </option>
+                                                    @endforeach
+                                                </select> -->
+                                                @error('operating_system_version')
+                                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                                @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="language" class="form-control-label">{{ __('Language') }} <span style="color:red;">*</span></label>
+                                        <label for="language" class="form-control-label">{{ __('Language') }}</label>
                                         <div class="@error('language')border border-danger rounded-3 @enderror">
                                             <select class="form-control" id="language" name="language" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
@@ -169,15 +169,18 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="language_version" class="form-control-label">{{ __('Language Version') }} <span style="color:red;">*</span></label>
+                                        <label for="language_version" class="form-control-label">{{ __('Language Version') }}</label>
                                         <div class="@error('language_version')border border-danger rounded-3 @enderror">
-                                            <input class="form-control" 
-                                                value="@if(optional($template_obj)->language_version){{ $template_obj->language_version }}@else{{ old('language_version') }}@endif" 
-                                                type="float" 
-                                                placeholder="Language Version" 
-                                                id="language_version" 
-                                                name="language_version">
-                                                
+                                            <!-- <input class="form-control" value="{{ old('language_version') }}" type="float" placeholder="Language Version" id="language_version" name="language_version"> -->
+                                                <select class="form-control" id="language_version" name="language_version" >
+                                                    <option disabled selected>{{ __('Please Select') }}</option>
+                                                    @foreach($versions as $version)
+                                                        <option value="{{ $version }}"
+                                                        @if( isset($template_obj->language_version) && $template_obj->language_version == $version ) selected @endif >
+                                                        {{ $version }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
                                                 @error('language_version')
                                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -189,7 +192,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="framework" class="form-control-label">{{ __('Framework') }} <span style="color:red;">*</span></label>
+                                        <label for="framework" class="form-control-label">{{ __('Framework') }}</label>
                                         <div class="@error('framework')border border-danger rounded-3 @enderror">
                                         <select class="form-control" id="framework" name="framework" >
                                             <option disabled selected>{{ __('Please Select') }}</option>
@@ -208,14 +211,18 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="framework_version" class="form-control-label">{{ __('Framework Version') }} <span style="color:red;">*</span></label>
+                                        <label for="framework_version" class="form-control-label">{{ __('Framework Version') }}</label>
                                         <div class="@error('framework_version')border border-danger rounded-3 @enderror">
-                                            <input class="form-control" 
-                                                value="@if(optional($template_obj)->framework_version){{ $template_obj->framework_version }}@else{{ old('framework_version') }}@endif" 
-                                                type="float" 
-                                                placeholder="Framework Version" 
-                                                id="framework_version" 
-                                                name="framework_version">
+                                            <!-- <input class="form-control" value="{{ old('framework_version') }}" type="float" placeholder="Framework Version" id="framework_version" name="framework_version"> -->
+                                                <select class="form-control" id="framework_version" name="framework_version" >
+                                                    <option disabled selected>{{ __('Please Select') }}</option>
+                                                    @foreach($versions as $version)
+                                                        <option value="{{ $version }}"
+                                                        @if( isset($template_obj->framework_version) && $template_obj->framework_version == $version ) selected @endif >
+                                                        {{ $version }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
                                                 @error('framework_version')
                                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -227,7 +234,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="database" class="form-control-label">{{ __('Database') }} <span style="color:red;">*</span></label>
+                                        <label for="database" class="form-control-label">{{ __('Database') }}</label>
                                         <div class="@error('database')border border-danger rounded-3 @enderror">
                                             <select class="form-control" id="database" name="database" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
@@ -246,14 +253,18 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="database_version" class="form-control-label">{{ __('Database Version') }} <span style="color:red;">*</span></label>
+                                        <label for="database_version" class="form-control-label">{{ __('Database Version') }}</label>
                                         <div class="@error('database_version')border border-danger rounded-3 @enderror">
-                                            <input class="form-control" 
-                                                value="@if(optional($template_obj)->database_version){{ $template_obj->database_version }}@else{{ old('database_version') }}@endif" 
-                                                type="float" 
-                                                placeholder="Database Version" 
-                                                id="database_version" 
-                                                name="database_version">
+                                            <!-- <input class="form-control" value="{{ old('database_version') }}" type="float" placeholder="Database Version" id="database_version" name="database_version"> -->
+                                                <select class="form-control" id="database_version" name="database_version" >
+                                                    <option disabled selected>{{ __('Please Select') }}</option>
+                                                    @foreach($versions as $version)
+                                                        <option value="{{ $version }}"
+                                                        @if( isset($template_obj->database_version) && $template_obj->database_version == $version ) selected @endif >
+                                                        {{ $version }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
                                                 @error('database_version')
                                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -265,10 +276,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_exposed_to_content" class="form-control-label">{{ __('Is Exposed to Content') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_exposed_to_content" class="form-control-label">{{ __('Is Exposed to Content') }}</label>
                                         <div class="@error('is_exposed_to_content')border border-danger rounded-3 @enderror">
                                         <select class="form-control" id="is_exposed_to_content" name="is_exposed_to_content" >
-                                            <option selected disabled class="fw-bold" >Please Select</option>
                                             <option value="YES">YES</option>
                                             <option value="NO">NO</option>
                                         </select>
@@ -280,10 +290,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_dr" class="form-control-label">{{ __('Is Directory') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_dr" class="form-control-label">{{ __('Is Directory') }}</label>
                                         <div class="@error('is_dr')border border-danger rounded-3 @enderror">
                                             <select class="form-control" id="is_dr" name="is_dr" >
-                                                <option selected disabled class="fw-bold" >Please Select</option>
                                                 <option value="YES">YES</option>
                                                 <option value="NO">NO</option>
                                             </select>
@@ -298,10 +307,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_vapt_done" class="form-control-label">{{ __('Is Vapt Done') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_vapt_done" class="form-control-label">{{ __('Is Vapt Done') }}</label>
                                         <div class="@error('is_vapt_done')border border-danger rounded-3 @enderror">
                                         <select class="form-control" id="is_vapt_done" name="is_vapt_done" >
-                                            <option selected disabled class="fw-bold" >Please Select</option>
                                             <option value="YES">YES</option>
                                             <option value="NO">NO</option>
                                         </select>
@@ -313,10 +321,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_backup" class="form-control-label">{{ __('Is Backup') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_backup" class="form-control-label">{{ __('Is Backup') }}</label>
                                         <div class="@error('is_backup')border border-danger rounded-3 @enderror">
                                             <select class="form-control" id="is_backup" name="is_backup" >
-                                                <option selected disabled class="fw-bold" >Please Select</option>
                                                 <option value="YES">YES</option>
                                                 <option value="NO">NO</option>
                                             </select>
