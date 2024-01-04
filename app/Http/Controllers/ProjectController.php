@@ -53,25 +53,24 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
         $attributes = request()->validate([
-            'name' => ['required', 'max:50'],
-            'url' => ['required', 'url', 'unique:projects,url'],
-            'ip' => ['required', 'ip'],
-            'secondary_ip' => ['nullable', 'ip'],
-            'operating_system' => ['required'],
-            'operating_system_version' => ['required'],
-            'language' => ['required'],
-            'language_version' => ['required'],
-            'framework' => ['required'],
-            'framework_version' => ['required'],
-            'database' => ['required'],
-            'database_version' => ['required'],
-            'is_exposed_to_content' => ['required', 'in:YES,NO'],
-            'is_dr' => ['in:YES,NO'],
-            'is_vapt_done' => ['in:YES,NO'],
-            'is_backup' => ['in:YES,NO'],
-            'file' => ['mimes:jpeg,png,pdf,csv', 'max:2048'],
+            'name'                      => ['required', 'max:50'],
+            'url'                       => ['required', 'url', 'unique:projects,url'],
+            'ip'                        => ['required', 'ip'],
+            'secondary_ip'              => ['nullable', 'ip'],
+            'operating_system'          => ['required'],
+            'operating_system_version'  => ['required','float'],
+            'language'                  => ['required'],
+            'language_version'          => ['required','float'],
+            'framework'                 => ['required'],
+            'framework_version'         => ['required','float'],
+            'database'                  => ['required'],
+            'database_version'          => ['required','float'],
+            'is_exposed_to_content'     => ['required', 'in:YES,NO'],
+            'is_dr'                     => ['in:YES,NO'],
+            'is_vapt_done'              => ['in:YES,NO'],
+            'is_backup'                 => ['in:YES,NO'],
+            'file'                      => ['mimes:jpeg,png,pdf,csv', 'max:2048'],
         ]);
 
         if ($request->hasFile('file')) {
@@ -82,11 +81,9 @@ class ProjectController extends Controller
             $file->storeAs('public/files', $fileName);
             $file->move('public/files',$file);
         }
-        
 
         (new Project)->storeProject($request);
         (new Template)->storeTemplate($request, Auth::user()->id);
-    
 
         return redirect()->route('project.index')->with('success', 'Project detail has been created');
     }
