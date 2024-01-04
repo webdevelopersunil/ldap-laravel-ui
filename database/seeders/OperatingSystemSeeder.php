@@ -16,13 +16,21 @@ class OperatingSystemSeeder extends Seeder
         OperatingSystem::create(
             [
                 'name'  =>  'WINDOWS'
-            ],
+            ]
+        );
+
+        OperatingSystem::create(
+            
             [
                 'name'  =>  'LINUX'
-            ],
+            ]
+        );
+
+        OperatingSystem::create(
+            
             [
                 'name'  =>  'UNIX'
-            ],
+            ]
         );
     }
 }

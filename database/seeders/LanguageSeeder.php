@@ -17,7 +17,11 @@ class LanguageSeeder extends Seeder
         Language::create(
             [
                 'name'  =>  'PHP'
-            ],
+            ]
+        );
+
+        Language::create(
+            
             [
                 'name'  =>  'PYTHON'
             ]

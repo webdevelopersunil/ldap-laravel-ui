@@ -4,6 +4,7 @@ use LdapRecord\Container;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ManageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TemplateController;
@@ -39,6 +40,30 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/set/template', [App\Http\Controllers\TemplateController::class, 'setTemplate'])->name('set.template');
     Route::get('/template', [App\Http\Controllers\TemplateController::class, 'index'])->name('template.index');
+
+    
+
+
+    Route::get('/manage/manage/index', [ManageController::class, 'manageIndex'])->name('manage.index');
+
+    Route::get('/manage/database/create', [ManageController::class, 'databaseCreate'])->name('database.create');
+    Route::post('/manage/database/store', [ManageController::class, 'databaseStore'])->name('database.store');
+    Route::get('/manage/database/delete/{id}', [ManageController::class, 'databaseDelete'])->name('database.delete');
+
+    
+    Route::get('/manage/framework/create', [ManageController::class, 'frameworkCreate'])->name('framework.create');
+    Route::post('/manage/framework/store', [ManageController::class, 'frameworkStore'])->name('framework.store');
+    Route::get('/manage/framework/delete/{id}', [ManageController::class, 'frameworkDelete'])->name('framework.delete');
+
+    
+    Route::get('/manage/language/create', [ManageController::class, 'languageCreate'])->name('language.create');
+    Route::post('/manage/language/store', [ManageController::class, 'languageStore'])->name('language.store');
+    Route::get('/manage/language/delete/{id}', [ManageController::class, 'languageDelete'])->name('language.delete');
+
+    
+    Route::get('/manage/os/create', [ManageController::class, 'osCreate'])->name('os.create');
+    Route::post('/manage/os/store', [ManageController::class, 'osStore'])->name('os.store');
+    Route::get('/manage/os/delete/{id}', [ManageController::class, 'osDelete'])->name('os.delete');
 });
 
 Route::group(['middleware' => 'guest'], function () {

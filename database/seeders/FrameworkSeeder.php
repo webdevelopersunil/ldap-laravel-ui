@@ -16,16 +16,28 @@ class FrameworkSeeder extends Seeder
         Framework::create(
             [
                 'name'  =>  'LARAVEL'
-            ],
+            ]
+        );
+
+        Framework::create(
+            
             [
                 'name'  =>  'DJANGO'
-            ],
+            ]
+        );
+
+        Framework::create(
+            
             [
                 'name'  =>  'CORE-PHP'
-            ],
+            ]
+        );
+
+        Framework::create(
+            
             [
                 'name'  =>  'CORE-PYTHON'
-            ],
+            ]
         );
     }
 }
