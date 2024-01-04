@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
                 UserTableSeeder::class,
                 LanguageSeeder::class,
                 OperatingSystemSeeder::class,
+                FrameworkSeeder::class,
             ]
         );
     }
