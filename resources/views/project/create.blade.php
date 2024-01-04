@@ -304,11 +304,11 @@
                                     <div class="form-group">
                                         <label for="is_vapt_done" class="form-control-label">{{ __('Is Vapt Done') }} <span style="color:red;" > * </span> </label>
                                         <div class="@error('is_vapt_done')border border-danger rounded-3 @enderror">
-                                        <select class="form-control" id="is_vapt_done" name="is_vapt_done" >
-                                            <option selected disabled class="fw-bold" >Please Select</option>
-                                            <option value="YES">YES</option>
-                                            <option value="NO">NO</option>
-                                        </select>
+                                            <select class="form-control" id="is_vapt_done" name="is_vapt_done">
+                                                <option selected disabled class="fw-bold">Please Select</option>
+                                                <option value="YES">YES</option>
+                                                <option value="NO">NO</option>
+                                            </select>
                                             @error('is_vapt_done')
                                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -331,7 +331,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="fileInputContainer" style="display:none;">
                                     <div class="form-group">
                                         <label for="file" class="form-control-label">{{ __('File') }}</label>
                                         <div class="@error('file')border border-danger rounded-3 @enderror">
@@ -389,6 +389,14 @@
                 input.value = '';
             }
         }
+        document.getElementById('is_vapt_done').addEventListener('change', function () {
+            var fileInputContainer = document.getElementById('fileInputContainer');
+            if (this.value === 'YES') {
+                fileInputContainer.style.display = 'block';
+            }else{
+                fileInputContainer.style.display = 'none';
+            }
+        });
     </script>
-    
+
 @endsection
