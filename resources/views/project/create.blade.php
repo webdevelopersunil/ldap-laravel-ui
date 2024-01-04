@@ -134,11 +134,12 @@
                                         <label for="operating_system_version" class="form-control-label">{{ __('Operating System Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('operating_system_version')border border-danger rounded-3 @enderror">
                                         <input class="form-control" 
-                                            value="@if(optional($template_obj)->operating_system_version){{ $template_obj->operating_system_version }}@else{{ old('operating_system_version') }}@endif" 
-                                            type="float" 
+                                            value="{{ isset($template_obj->operating_system_version) ? $template_obj->operating_system_version : old('operating_system_version') }}"
+                                            type="text" 
                                             placeholder="Operating System Version" 
                                             id="operating_system_version" 
-                                            name="operating_system_version">
+                                            name="operating_system_version"
+                                            oninput="validateOperatingSystemVersion(this)">
                                             @error('operating_system_version')
                                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -172,12 +173,12 @@
                                         <label for="language_version" class="form-control-label">{{ __('Language Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('language_version')border border-danger rounded-3 @enderror">
                                             <input class="form-control" 
-                                                value="@if(optional($template_obj)->language_version){{ $template_obj->language_version }}@else{{ old('language_version') }}@endif" 
-                                                type="float" 
+                                                value="{{ isset($template_obj->language_version) ? $template_obj->language_version : old('language_version') }}"
+                                                type="text" 
                                                 placeholder="Language Version" 
                                                 id="language_version" 
-                                                name="language_version">
-                                                
+                                                name="language_version"
+                                                oninput="validateLanguageVersion(this)">
                                                 @error('language_version')
                                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -211,11 +212,12 @@
                                         <label for="framework_version" class="form-control-label">{{ __('Framework Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('framework_version')border border-danger rounded-3 @enderror">
                                             <input class="form-control" 
-                                                value="@if(optional($template_obj)->framework_version){{ $template_obj->framework_version }}@else{{ old('framework_version') }}@endif" 
-                                                type="float" 
+                                                value="{{ isset($template_obj->framework_version) ? $template_obj->framework_version : old('framework_version') }}"
+                                                type="text" 
                                                 placeholder="Framework Version" 
                                                 id="framework_version" 
-                                                name="framework_version">
+                                                name="framework_version"
+                                                oninput="validateFrameworkVersion(this)">
                                                 @error('framework_version')
                                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -249,17 +251,19 @@
                                         <label for="database_version" class="form-control-label">{{ __('Database Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('database_version')border border-danger rounded-3 @enderror">
                                             <input class="form-control" 
-                                                value="@if(optional($template_obj)->database_version){{ $template_obj->database_version }}@else{{ old('database_version') }}@endif" 
-                                                type="float" 
+                                                value="{{ isset($template_obj->database_version) ? $template_obj->database_version : old('database_version') }}"
+                                                type="text" 
                                                 placeholder="Database Version" 
                                                 id="database_version" 
-                                                name="database_version">
-                                                @error('database_version')
-                                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                                @enderror
+                                                name="database_version"
+                                                oninput="validateDatabaseVersion(this)">
+                                            @error('database_version')
+                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="row">
@@ -355,5 +359,36 @@
     </div>
   </main>
 
+    <script>
+        function validateDatabaseVersion(input) {
+            const value = input.value.trim();
+            const regex = /^(\d+(\.\d*)?|\.\d+)$/;
+            if (!regex.test(value)) {
+                input.value = '';
+            }
+        }
 
+        function validateOperatingSystemVersion(input) {
+            const value = input.value.trim();
+            const regex = /^(\d+(\.\d*)?|\.\d+)$/;
+            if (!regex.test(value)) {
+                input.value = '';
+            }
+        }
+        function validateLanguageVersion(input) {
+            const value = input.value.trim();
+            const regex = /^(\d+(\.\d*)?|\.\d+)$/;
+            if (!regex.test(value)) {
+                input.value = '';
+            }
+        }
+        function validateFrameworkVersion(input) {
+            const value = input.value.trim();
+            const regex = /^(\d+(\.\d*)?|\.\d+)$/;
+            if (!regex.test(value)) {
+                input.value = '';
+            }
+        }
+    </script>
+    
 @endsection

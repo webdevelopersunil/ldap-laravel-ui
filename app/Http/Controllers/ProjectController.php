@@ -28,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $templates          =   (new TemplateController)->getTemplates();
+        $template_obj = $templates          =   (new TemplateController)->getTemplates();
 
         if( count($templates)  >= 1 ){
 
@@ -40,9 +40,8 @@ class ProjectController extends Controller
             $languages          =   $this->getLanguages();
             $frameworks         =   $this->getFrameworks();
             $databases          =   $this->getDatabase();
-            $versions           =   $this->getVersions();
             
-            return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions'));
+            return view('project.create', compact('operatingSystems','languages','frameworks','databases','template_obj'));
         }
         
         
@@ -59,13 +58,13 @@ class ProjectController extends Controller
             'ip'                        => ['required', 'ip'],
             'secondary_ip'              => ['nullable', 'ip'],
             'operating_system'          => ['required'],
-            'operating_system_version'  => ['required','float'],
+            'operating_system_version'  => ['required', 'between:0,99.99'],
             'language'                  => ['required'],
-            'language_version'          => ['required','float'],
+            'language_version'          => ['required', 'between:0,99.99'],
             'framework'                 => ['required'],
-            'framework_version'         => ['required','float'],
+            'framework_version'         => ['required', 'between:0,99.99'],
             'database'                  => ['required'],
-            'database_version'          => ['required','float'],
+            'database_version'          => ['required', 'between:0,99.99'],
             'is_exposed_to_content'     => ['required', 'in:YES,NO'],
             'is_dr'                     => ['required','in:YES,NO'],
             'is_vapt_done'              => ['required','in:YES,NO'],
