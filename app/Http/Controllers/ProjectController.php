@@ -72,6 +72,16 @@ class ProjectController extends Controller
             'file' => ['mimes:jpeg,png,pdf,csv', 'max:2048'],
         ]);
 
+        if ($request->hasFile('file')) {
+            // Storage::disk('local')->put('example.txt', $request->file('file'));
+            // dd($request->file('file'));
+            $file = $request->file('file');
+            $fileName = now()->format('YmdHis') . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/files', $fileName);
+            $file->move('public/files',$file);
+        }
+        
+
         (new Project)->storeProject($request);
         (new Template)->storeTemplate($request, Auth::user()->id);
     

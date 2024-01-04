@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
 use LdapRecord\Container;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -42,8 +42,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function username()
+    {
+        return 'cpfNo';
+    }
 
-    public function login(Request $request)
+
+    public function attemptLogin(Request $request)
     {
         $validator = $request->validate([
             'cpfNo' => 'required',
@@ -75,11 +80,12 @@ class LoginController extends Controller
                     ]);
                 }
                 Auth::login($user);
-                return redirect()->intended('home'); 
+                return redirect()->intended('home');
             }
 
             return false; 
         }
-        die;
+        
+        return false;
     }
 }
