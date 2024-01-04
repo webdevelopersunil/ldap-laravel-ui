@@ -69,7 +69,7 @@ class ProjectController extends Controller
             'is_dr' => ['in:YES,NO'],
             'is_vapt_done' => ['in:YES,NO'],
             'is_backup' => ['in:YES,NO'],
-            // 'file' => ['nullable', 'mimes:jpeg,png,pdf,csv', 'max:2048'],
+            'file' => ['mimes:jpeg,png,pdf,csv', 'max:2048'],
         ]);
 
         (new Project)->storeProject($request);
