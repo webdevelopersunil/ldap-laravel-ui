@@ -333,6 +333,18 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="file" class="form-control-label">{{ __('File') }}</label>
+                                        <div class="@error('file')border border-danger rounded-3 @enderror">
+                                            <input class="form-control" type="file" name="file" id="file">
+                                            @error('file')
+                                                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="d-flex justify-content-end">

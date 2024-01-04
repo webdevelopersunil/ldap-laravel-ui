@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Template;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TemplateController;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -38,8 +39,6 @@ class ProjectController extends Controller
             $frameworks         =   $this->getFrameworks();
             $databases          =   $this->getDatabase();
             $versions           =   $this->getVersions();
-            // $templates          =   (new TemplateController)->getTemplates();
-            // $templateOption     =   count($templates) >= 1 ? 1 : 0;
             
             return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions'));
         }
@@ -53,34 +52,29 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-        if( isset($request->template) && !empty($request->template) ){
+        $attributes = request()->validate([
+            'name' => ['required', 'max:50'],
+            'url' => ['required', 'url', 'unique:projects,url'],
+            'ip' => ['required', 'ip'],
+            'secondary_ip' => ['nullable', 'ip'],
+            'operating_system' => ['required'],
+            'operating_system_version' => ['required'],
+            'language' => ['required'],
+            'language_version' => ['required'],
+            'framework' => ['required'],
+            'framework_version' => ['required'],
+            'database' => ['required'],
+            'database_version' => ['required'],
+            'is_exposed_to_content' => ['required', 'in:YES,NO'],
+            'is_dr' => ['in:YES,NO'],
+            'is_vapt_done' => ['in:YES,NO'],
+            'is_backup' => ['in:YES,NO'],
+            // 'file' => ['nullable', 'mimes:jpeg,png,pdf,csv', 'max:2048'],
+        ]);
 
-            
-
-        }else{
-
-            $attributes = request()->validate([
-                'name' => ['required', 'max:50'],
-                'url' => ['required', 'url', 'unique:projects,url'],
-                'ip' => ['required', 'ip'],
-                'secondary_ip' => ['nullable', 'ip'],
-                'operating_system' => ['required'],
-                'operating_system_version' => ['required'],
-                'language' => ['required'],
-                'language_version' => ['required'],
-                'framework' => ['required'],
-                'framework_version' => ['required'],
-                'database' => ['required'],
-                'database_version' => ['required'],
-                'is_exposed_to_content' => ['required', 'in:YES,NO'],
-                'is_dr' => ['in:YES,NO'],
-                'is_vapt_done' => ['in:YES,NO'],
-                'is_backup' => ['in:YES,NO'],
-            ]);
-
-            (new Project)->storeProject($request);
-            (new Template)->storeTemplate($request, Auth::user()->id);
-        }
+        (new Project)->storeProject($request);
+        (new Template)->storeTemplate($request, Auth::user()->id);
+    
 
         return redirect()->route('project.index')->with('success', 'Project detail has been created');
     }
