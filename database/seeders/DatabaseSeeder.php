@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-                //WorkcenterSeeder::class,
-                //SubLocationSeeder::class,
-                PermissionTableSeeder::class,
-                RoleTableSeeder::class,
-                UserTableSeeder::class,
-                //CisoMemberTableSeeder::class,
-            ]);
+            //WorkcenterSeeder::class,
+            //SubLocationSeeder::class,
+            PermissionTableSeeder::class,
+            RoleTableSeeder::class,
+            UserTableSeeder::class,
+            //CisoMemberTableSeeder::class,
+        ]);
     }
 }
