@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
                 RoleTableSeeder::class,
                 UserTableSeeder::class,
                 LanguageSeeder::class,
+                OperatingSystemSeeder::class,
             ]
         );
     }
