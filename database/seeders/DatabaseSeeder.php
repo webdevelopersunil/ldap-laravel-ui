@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 LanguageSeeder::class,
                 OperatingSystemSeeder::class,
                 FrameworkSeeder::class,
+                DatabaseListsSeeder::class
             ]
         );
     }
