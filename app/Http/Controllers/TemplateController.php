@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProjectController;
 use App\Models\Template;
+use Illuminate\Support\Facades\Crypt;
 
 class TemplateController extends Controller
 {
@@ -24,6 +25,9 @@ class TemplateController extends Controller
         $versions           =   (new ProjectController)->getVersions();
         $templates          =   (new TemplateController)->getTemplates();
         $templateOption     =   count($templates) >= 1 ? 1 : 0;
+
+        // $decryptedData = Crypt::decrypt($encryptedData);
+        // $encryptedData = Crypt::encrypt($dataToEncrypt);
 
         return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions','templateOption','templates','template_obj','template_obj'));
     }
