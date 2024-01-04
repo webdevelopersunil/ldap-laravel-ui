@@ -28,21 +28,21 @@ class Template extends Model
 
         $ifFoundTemplate   =   self::where(
                 [
-                    'operating_system'=>$template['operating_system'],
-                    'operating_system_version'=>$template['operating_system_version'],
-                    'language'=>$template['language'],
-                    'language_version'=>$template['language_version'],
-                    'framework'=>$template['framework'],
-                    'framework_version'=>$template['framework_version'],
-                    'database'=>$template['database'],
-                    'database_version'=>$template['database_version'],
-                    
+                    'operating_system'          =>  trim($template['operating_system']),
+                    'operating_system_version'  =>  trim($template['operating_system_version']),
+                    'language'                  =>  trim($template['language']),
+                    'language_version'          =>  trim($template['language_version']),
+                    'framework'                 =>  trim($template['framework']),
+                    'framework_version'         =>  trim($template['framework_version']),
+                    'database'                  =>  trim($template['database']),
+                    'database_version'          =>  trim($template['database_version']),
+
                 ])->where('user_id',$user_id)->count();
                     
         if($ifFoundTemplate == 0 ){
 
-            $project                            =   new Template();
-            $project->user_id                   =   $template['operating_system'];
+            $project                            =   new self();
+            $project->user_id                   =   $user_id;
             $project->operating_system          =   $template['operating_system'];
             $project->operating_system_version  =   $template['operating_system_version'];
             $project->language                  =   $template['language'];

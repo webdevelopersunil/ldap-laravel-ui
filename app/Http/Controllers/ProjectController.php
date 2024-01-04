@@ -25,15 +25,26 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $operatingSystems   =   $this->getOperatingSystem();
-        $languages          =   $this->getLanguages();
-        $frameworks         =   $this->getFrameworks();
-        $databases          =   $this->getDatabase();
-        $versions           =   $this->getVersions();
         $templates          =   (new TemplateController)->getTemplates();
-        $templateOption     =   count($templates) >= 1 ? 1 : 0;
+
+        if( count($templates)  >= 1 ){
+
+            return view('project.template', compact('templates'));
+
+        }else{
+
+            $operatingSystems   =   $this->getOperatingSystem();
+            $languages          =   $this->getLanguages();
+            $frameworks         =   $this->getFrameworks();
+            $databases          =   $this->getDatabase();
+            $versions           =   $this->getVersions();
+            // $templates          =   (new TemplateController)->getTemplates();
+            // $templateOption     =   count($templates) >= 1 ? 1 : 0;
+            
+            return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions'));
+        }
         
-        return view('project.create', compact('operatingSystems','languages','frameworks','databases','versions','templateOption','templates'));
+        
     }
     
     /**
@@ -43,7 +54,9 @@ class ProjectController extends Controller
     {
 
         if( isset($request->template) && !empty($request->template) ){
+
             
+
         }else{
 
             $attributes = request()->validate([
