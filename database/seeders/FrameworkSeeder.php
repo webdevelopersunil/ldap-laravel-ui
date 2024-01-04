@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Framework;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,19 @@ class FrameworkSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Framework::create(
+            [
+                'name'  =>  'LARAVEL'
+            ],
+            [
+                'name'  =>  'DJANGO'
+            ],
+            [
+                'name'  =>  'CORE-PHP'
+            ],
+            [
+                'name'  =>  'CORE-PYTHON'
+            ],
+        );
     }
 }
