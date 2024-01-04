@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+
 use App\Models\Project;
 use App\Models\Template;
 use Illuminate\Http\Request;
-use App\Http\Controllers\TemplateController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\TemplateController;
+
 
 class ProjectController extends Controller
 {

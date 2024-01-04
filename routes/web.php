@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use LdapRecord\Container;
-use App\Http\Controllers\ProjectController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TemplateController;
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,7 @@ Route::get('ldap', function (Request $request) {
     $connection = Container::getConnection('default');
     $record = $connection->query()->findBy('samaccountname', 'A004112' );
     echo "<pre/>"; print_r($record); die;
-
-        dd(Adldap::auth()->attempt('CN=Boardportal Admin,OU=Users,OU=ScopeMinar,OU=Delhi,OU=CorporateOffice,DC=ONGC,DC=ONGCGroup,DC=co,DC=in', 'SRee56##@ad'));
+    
 });
 
 Auth::routes();
