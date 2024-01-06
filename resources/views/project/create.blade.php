@@ -269,7 +269,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_exposed_to_content" class="form-control-label">{{ __('Is Exposed to Content') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_exposed_to_content" class="form-control-label">{{ __('Is Exposed to Internet') }} <span style="color:red;" > * </span> </label>
                                         <div class="@error('is_exposed_to_content')border border-danger rounded-3 @enderror">
                                         <select class="form-control" id="is_exposed_to_content" name="is_exposed_to_content" >
                                             <option selected disabled class="fw-bold" >Please Select</option>
