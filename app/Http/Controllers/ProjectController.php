@@ -26,13 +26,13 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $template_obj = $templates          =   (new TemplateController)->getTemplates();
+    public function create(){
 
-        if( count($templates)  >= 1 ){
+        $template_obj   =   (new TemplateController)->getTemplates();
 
-            return view('project.template', compact('templates'));
+        if( count($template_obj)  >= 1 ){
+
+            return redirect()->route('template.index');
 
         }else{
 
@@ -43,9 +43,16 @@ class ProjectController extends Controller
             
             return view('project.create', compact('operatingSystems','languages','frameworks','databases','template_obj'));
         }
-        
-        
     }
+
+
+    public function templatesIndex(){
+
+        $templates       =   Template::all();
+
+        return view('project.template', compact('templates'));
+    }
+
     
     /**
      * Store a newly created resource in storage.

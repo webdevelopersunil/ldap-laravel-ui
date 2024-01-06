@@ -39,34 +39,37 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
 
     Route::post('/set/template', [App\Http\Controllers\TemplateController::class, 'setTemplate'])->name('set.template');
-    Route::get('/template', [App\Http\Controllers\TemplateController::class, 'index'])->name('template.index');
-
     
 
+    // Templates Routes
+    Route::get('/template', [App\Http\Controllers\ProjectController::class, 'templatesIndex'])->name('template.index');
+    
 
+    // Management Index Route
     Route::get('/manage/manage/index', [ManageController::class, 'manageIndex'])->name('manage.index');
 
+    // Framework
     Route::get('/manage/database/create', [ManageController::class, 'databaseCreate'])->name('database.create');
     Route::post('/manage/database/store', [ManageController::class, 'databaseStore'])->name('database.store');
     Route::get('/manage/database/edit/{id}', [ManageController::class, 'databaseEdit'])->name('database.edit');
     Route::post('/manage/database/update', [ManageController::class, 'databaseUpdate'])->name('database.update');
     Route::get('/manage/database/delete/{id}', [ManageController::class, 'databaseDelete'])->name('database.delete');
 
-    
+    // Framework
     Route::get('/manage/framework/create', [ManageController::class, 'frameworkCreate'])->name('framework.create');
     Route::post('/manage/framework/store', [ManageController::class, 'frameworkStore'])->name('framework.store');
     Route::get('/manage/framework/edit/{id}', [ManageController::class, 'frameworkEdit'])->name('framework.edit');
     Route::post('/manage/framework/update', [ManageController::class, 'frameworkUpdate'])->name('framework.update');
     Route::get('/manage/framework/delete/{id}', [ManageController::class, 'frameworkDelete'])->name('framework.delete');
 
-    
+    // Programming Language
     Route::get('/manage/language/create', [ManageController::class, 'languageCreate'])->name('language.create');
     Route::post('/manage/language/store', [ManageController::class, 'languageStore'])->name('language.store');
     Route::get('/manage/language/edit/{id}', [ManageController::class, 'languageEdit'])->name('language.edit');
     Route::post('/manage/language/update', [ManageController::class, 'languageUpdate'])->name('language.update');
     Route::get('/manage/language/delete/{id}', [ManageController::class, 'languageDelete'])->name('language.delete');
 
-    
+    // Operating System
     Route::get('/manage/os/create', [ManageController::class, 'osCreate'])->name('os.create');
     Route::get('/manage/os/edit/{id}', [ManageController::class, 'osEdit'])->name('os.edit');
     Route::post('/manage/os/update', [ManageController::class, 'osUpdate'])->name('os.update');
