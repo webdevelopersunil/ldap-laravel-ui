@@ -13,31 +13,11 @@ class FrameworkSeeder extends Seeder
      */
     public function run(): void
     {
-        Framework::create(
-            [
-                'name'  =>  'LARAVEL'
-            ]
-        );
-
-        Framework::create(
-            
-            [
-                'name'  =>  'DJANGO'
-            ]
-        );
-
-        Framework::create(
-            
-            [
-                'name'  =>  'CORE-PHP'
-            ]
-        );
-
-        Framework::create(
-            
-            [
-                'name'  =>  'CORE-PYTHON'
-            ]
-        );
+        Framework::insert([
+            ['name' => 'LARAVEL'],
+            ['name' => 'DJANGO'],
+            ['name' => 'CORE-PHP'],
+            ['name' => 'CORE-PYTHON'],
+        ]);
     }
 }

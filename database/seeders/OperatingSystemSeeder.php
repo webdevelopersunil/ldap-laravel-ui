@@ -13,24 +13,11 @@ class OperatingSystemSeeder extends Seeder
      */
     public function run(): void
     {
-        OperatingSystem::create(
-            [
-                'name'  =>  'WINDOWS'
-            ]
-        );
-
-        OperatingSystem::create(
-            
-            [
-                'name'  =>  'LINUX'
-            ]
-        );
-
-        OperatingSystem::create(
-            
-            [
-                'name'  =>  'UNIX'
-            ]
-        );
+        OperatingSystem::insert([
+            ['name' => 'WINDOWS'],
+            ['name' => 'LINUX'],
+            ['name' => 'UNIX'],
+        ]);
+        
     }
 }

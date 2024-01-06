@@ -14,17 +14,9 @@ class LanguageSeeder extends Seeder
     public function run(): void
     {
         // name
-        Language::create(
-            [
-                'name'  =>  'PHP'
-            ]
-        );
-
-        Language::create(
-            
-            [
-                'name'  =>  'PYTHON'
-            ]
-        );
+        Language::insert([
+            ['name' => 'PHP'],
+            ['name' => 'PYTHON'],
+        ]);        
     }
 }

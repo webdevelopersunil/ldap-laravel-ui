@@ -13,39 +13,12 @@ class DatabaseListsSeeder extends Seeder
      */
     public function run(): void
     {
-        DatabaseLists::create(
-            [
-                'name'  =>  'MYSQL',
-            ]
-        );
-
-        DatabaseLists::create(
-            
-            [
-                'name'  =>  'MONGO-DB',
-            ]
-        );
-
-        DatabaseLists::create(
-            
-            [
-                'name'  =>  'ORACLE',
-            ]
-            
-        );
-
-        DatabaseLists::create(
-            
-            [
-                'name'  =>  'POSTGRE-SQL',
-            ]
-        );
-
-        DatabaseLists::create(
-            
-            [
-                'name'  =>  'MONGO-DB',
-            ]
-        );
+        DatabaseLists::insert([
+            ['name' => 'MYSQL'],
+            ['name' => 'MONGO-DB'],
+            ['name' => 'ORACLE'],
+            ['name' => 'POSTGRE-SQL'],
+            ['name' => 'MONGO-DB'], // Make sure the names are unique
+        ]);        
     }
 }
