@@ -35,7 +35,7 @@
                     @foreach( $oss as $index => $os )
                         <div class="timeline-block mb-3">
                         <span class="timeline-step">
-                          <a href="{{ route('os.edit', $os->id) }}"><i class="ni ni-active-40 text-primary text-gradient"></i></a>
+                          <a href="{{ route('os.edit', $os->id) }}"><i class="ni ni-settings text-primary text-gradient"></i></a>
                         </span>
                         <div class="timeline-content">
                             <h6 class="text-dark text-sm font-weight-bold mb-0">{{$index+1}}. &nbsp {{ $os->name }} </h6>
@@ -77,7 +77,7 @@
                     @foreach( $databases as $index => $database )
                         <div class="timeline-block mb-3">
                         <span class="timeline-step">
-                          <a href="{{ route('database.edit', $database->id) }}"><i class="ni ni-active-40 text-primary text-gradient"></i></a>
+                          <a href="{{ route('database.edit', $database->id) }}"><i class="ni ni-settings text-primary text-gradient"></i></a>
                         </span>
                         <div class="timeline-content">
                             <h6 class="text-dark text-sm font-weight-bold mb-0">{{$index+1}}. &nbsp {{ $database->name }}</h6>
@@ -117,7 +117,7 @@
                     @foreach( $languages as $index => $language )
                         <div class="timeline-block mb-3">
                         <span class="timeline-step">
-                          <a href="{{ route('language.edit', $language->id) }}"><i class="ni ni-active-40 text-primary text-gradient"></i></a>
+                          <a href="{{ route('language.edit', $language->id) }}"><i class="ni ni-settings text-primary text-gradient"></i></a>
                         </span>
                         <div class="timeline-content">
                             <h6 class="text-dark text-sm font-weight-bold mb-0">{{$index+1}}. &nbsp {{ $language->name }}</h6>
@@ -158,7 +158,7 @@
                     @foreach( $frameworks as $index => $framework )
                         <div class="timeline-block mb-3">
                         <span class="timeline-step">
-                          <a href="{{ route('framework.edit', $framework->id) }}"><i class="ni ni-active-40 text-primary text-gradient"></i></a>
+                          <a href="{{ route('framework.edit', $framework->id) }}"><i class="ni ni-settings text-primary text-gradient"></i></a>
                         </span>
                         <div class="timeline-content">
                             <h6 class="text-dark text-sm font-weight-bold mb-0">{{$index+1}}. &nbsp {{ $framework->name }}</h6>
