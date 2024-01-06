@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\TemplateController;
-
+use App\Models\DatabaseLists;
+use App\Models\Framework;
+use App\Models\Language;
+use App\Models\OperatingSystem;
+use Illuminate\Cache\DatabaseLock;
 
 class ProjectController extends Controller
 {
@@ -27,21 +31,21 @@ class ProjectController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(){
+        
+        $template   =   Template::all();
 
-        $template_obj   =   (new TemplateController)->getTemplates();
-
-        if( count($template_obj)  >= 1 ){
-
+        if( count($template)  > 0 ){
+            
             return redirect()->route('template.index');
 
         }else{
 
-            $operatingSystems   =   $this->getOperatingSystem();
-            $languages          =   $this->getLanguages();
-            $frameworks         =   $this->getFrameworks();
-            $databases          =   $this->getDatabase();
+            $operatingSystems   =   OperatingSystem::all();
+            $languages          =   Language::all();
+            $frameworks         =   Framework::all();
+            $databases          =   DatabaseLists::all();
             
-            return view('project.create', compact('operatingSystems','languages','frameworks','databases','template_obj'));
+            return view('project.create', compact('operatingSystems','languages','frameworks','databases','template'));
         }
     }
 
@@ -51,6 +55,32 @@ class ProjectController extends Controller
         $templates       =   Template::all();
 
         return view('project.template', compact('templates'));
+    }
+
+    public function setTemplate(Request $request){
+
+        $isFound    =   Template::find($request->template);
+        
+        if( $isFound ){
+
+            return redirect()->route('set.project.template',$request->template);
+
+        }else{
+            
+            return redirect()->route('set.project.template',$request->template);
+        }
+    }
+
+    public function setProjectTemplate(Request $request){
+
+        $operatingSystems   =   OperatingSystem::all();
+        $languages          =   Language::all();
+        $frameworks         =   Framework::all();
+        $databases          =   DatabaseLists::all();
+        $template           =   Template::find($request->id);
+        // dd($template);
+        
+        return view('project.create', compact('operatingSystems','languages','frameworks','databases','template'));
     }
 
     

@@ -14,7 +14,7 @@ class TemplateController extends Controller
         return Template::all();
     }
 
-    public function setTemplate(Request $request){
+    public function old_setTemplate(Request $request){
         
         $template_obj       =   Template::find($request->template);
         

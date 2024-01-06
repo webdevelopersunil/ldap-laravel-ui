@@ -117,9 +117,9 @@
                                             <select class="form-control" id="operating_system" name="operating_system" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
                                                     @foreach($operatingSystems as $operatingSystem)
-                                                        <option value="{{ $operatingSystem }}"
-                                                         @if( isset($template_obj->operating_system) && $template_obj->operating_system == $operatingSystem ) selected @endif >
-                                                         {{ $operatingSystem }}
+                                                        <option value="{{ $operatingSystem->name }}"
+                                                         @if( isset($template->operating_system) && $template->operating_system == $operatingSystem->name ) selected @endif >
+                                                         {{ $operatingSystem->name }}
                                                         </option>
                                                     @endforeach
                                             </select>
@@ -134,7 +134,7 @@
                                         <label for="operating_system_version" class="form-control-label">{{ __('Operating System Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('operating_system_version')border border-danger rounded-3 @enderror">
                                         <input class="form-control" 
-                                            value="{{ isset($template_obj->operating_system_version) ? $template_obj->operating_system_version : old('operating_system_version') }}"
+                                            value="{{ isset($template->operating_system_version) ? $template->operating_system_version : old('operating_system_version') }}"
                                             type="text" 
                                             placeholder="Operating System Version" 
                                             id="operating_system_version" 
@@ -156,9 +156,9 @@
                                             <select class="form-control" id="language" name="language" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
                                                 @foreach($languages as $language)
-                                                    <option value="{{$language}}"
-                                                    @if( isset($template_obj->language) && $template_obj->language == $language ) selected @endif >
-                                                    {{$language}}
+                                                    <option value="{{$language->name}}"
+                                                    @if( isset($template->language) && $template->language == $language->name ) selected @endif >
+                                                    {{$language->name}}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -173,7 +173,7 @@
                                         <label for="language_version" class="form-control-label">{{ __('Language Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('language_version')border border-danger rounded-3 @enderror">
                                             <input class="form-control" 
-                                                value="{{ isset($template_obj->language_version) ? $template_obj->language_version : old('language_version') }}"
+                                                value="{{ isset($template->language_version) ? $template->language_version : old('language_version') }}"
                                                 type="text" 
                                                 placeholder="Language Version" 
                                                 id="language_version" 
@@ -195,9 +195,9 @@
                                         <select class="form-control" id="framework" name="framework" >
                                             <option disabled selected>{{ __('Please Select') }}</option>
                                             @foreach($frameworks as $framework)
-                                                <option value="{{$framework}}"
-                                                @if( isset($template_obj->framework) && $template_obj->framework == $framework ) selected @endif >
-                                                {{$framework}}
+                                                <option value="{{$framework->name}}"
+                                                @if( isset($template->framework) && $template->framework == $framework->name ) selected @endif >
+                                                {{$framework->name}}
                                             </option>
                                             @endforeach
                                         </select>
@@ -212,7 +212,7 @@
                                         <label for="framework_version" class="form-control-label">{{ __('Framework Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('framework_version')border border-danger rounded-3 @enderror">
                                             <input class="form-control" 
-                                                value="{{ isset($template_obj->framework_version) ? $template_obj->framework_version : old('framework_version') }}"
+                                                value="{{ isset($template->framework_version) ? $template->framework_version : old('framework_version') }}"
                                                 type="text" 
                                                 placeholder="Framework Version" 
                                                 id="framework_version" 
@@ -234,10 +234,10 @@
                                             <select class="form-control" id="database" name="database" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
                                                 @foreach($databases as $database)
-                                                    <option value="{{$database}}"
-                                                    @if( isset($template_obj->database) && $template_obj->database == $database ) selected @endif >
-                                                    {{$database}}
-                                                </option>
+                                                    <option value="{{$database->name}}"
+                                                        @if( isset($template->database) && $template->database == $database->name ) selected @endif >
+                                                        {{$database->name}}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('database')
@@ -251,7 +251,7 @@
                                         <label for="database_version" class="form-control-label">{{ __('Database Version') }} <span style="color:red;">*</span></label>
                                         <div class="@error('database_version')border border-danger rounded-3 @enderror">
                                             <input class="form-control" 
-                                                value="{{ isset($template_obj->database_version) ? $template_obj->database_version : old('database_version') }}"
+                                                value="{{ isset($template->database_version) ? $template->database_version : old('database_version') }}"
                                                 type="text" 
                                                 placeholder="Database Version" 
                                                 id="database_version" 

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TemplateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,13 +37,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
     Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
 
-    Route::post('/set/template', [App\Http\Controllers\TemplateController::class, 'setTemplate'])->name('set.template');
     
-
     // Templates Routes
     Route::get('/template', [App\Http\Controllers\ProjectController::class, 'templatesIndex'])->name('template.index');
+    Route::post('/set/template', [App\Http\Controllers\ProjectController::class, 'setTemplate'])->name('set.template');
+    Route::get('/project/create/{id}', [App\Http\Controllers\ProjectController::class, 'setProjectTemplate'])->name('set.project.template');
     
-
     // Management Index Route
     Route::get('/manage/manage/index', [ManageController::class, 'manageIndex'])->name('manage.index');
 
