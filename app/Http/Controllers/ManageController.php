@@ -29,8 +29,9 @@ class ManageController extends Controller
         $mode   =   'database';
         $title  =   'Create Database';
         $label  =   'Database';
+        $route  =   'database.store';
 
-        return view('manage.create', compact('mode','title','label'));
+        return view('manage.create', compact('mode','title','label','route'));
     }
 
     public function databaseStore(Request $request){
@@ -54,17 +55,44 @@ class ManageController extends Controller
         return view('manage.index');
     }
 
+    public function databaseEdit(Request $request){
+
+        $title  =   'Update Database System';
+        $label  =   'Database System';
+        $route  =   'database.update';
+        
+        $detail  =   DatabaseLists::find($request->id);
+
+        return view('manage.create', compact('title','label','route','detail'));
+    }
+
+    public function databaseUpdate(Request $request){
+
+        $os = DatabaseLists::find($request->id);
+    
+        if ($os) {
+            $os->update(['name' => $request->name]);
+        }
+    
+        return redirect()->route('manage.index')->with('success', 'Database has been updated successfully');
+    }
+
+
+
+
+
 
 
 
 
     public function osCreate(Request $request){
 
-        $mode   =   'Operating System';
+        $mode   =   'os';
         $title  =   'Create Operating System';
         $label  =   'Operating System';
+        $route  =   'os.store';
 
-        return view('manage.create', compact('mode','title','label'));
+        return view('manage.create', compact('mode','title','label','route'));
     }
 
     public function osStore(Request $request){
@@ -76,7 +104,7 @@ class ManageController extends Controller
             return redirect()->route('os.create')->with('error', 'Dublicate Entry!');
         }else{
 
-            DatabaseLists::create(['name'=>$request->name]);
+            OperatingSystem::create(['name'=>$request->name]);
 
             return redirect()->route('manage.index')->with('success', 'Operating System has been created successfully');
         }
@@ -86,6 +114,33 @@ class ManageController extends Controller
 
         return view('manage.index');
     }
+
+    public function osEdit(Request $request){
+
+        $title  =   'Update Operating System';
+        $label  =   'Operating System';
+        $route  =   'os.update';
+        
+        $detail  =   OperatingSystem::find($request->id);
+
+        return view('manage.create', compact('title','label','route','detail'));
+    }
+
+    public function osUpdate(Request $request){
+
+        $os = OperatingSystem::find($request->id);
+    
+        if ($os) {
+            $os->update(['name' => $request->name]);
+        }
+    
+        return redirect()->route('manage.index')->with('success', 'OS has been updated successfully');
+    }
+    
+
+
+
+
 
 
 
@@ -97,8 +152,9 @@ class ManageController extends Controller
         $mode   =   'language';
         $title  =   'Create Language';
         $label  =   'Programming Language';
+        $route  =   'language.store';
 
-        return view('manage.create', compact('mode','title','label'));
+        return view('manage.create', compact('mode','title','label','route'));
     }
 
     public function languageStore(Request $request){
@@ -121,6 +177,33 @@ class ManageController extends Controller
         // return view('manage.index');
     }
 
+    public function languageEdit(Request $request){
+
+        $title  =   'Update Language System';
+        $label  =   'Language System';
+        $route  =   'language.update';
+        
+        $detail  =   Language::find($request->id);
+
+        return view('manage.create', compact('title','label','route','detail'));
+    }
+
+    public function languageUpdate(Request $request){
+
+        $os = Language::find($request->id);
+    
+        if ($os) {
+            $os->update(['name' => $request->name]);
+        }
+    
+        return redirect()->route('manage.index')->with('success', 'Programming Language has been updated successfully');
+    }
+
+
+
+
+
+
 
 
     public function frameworkCreate(Request $request){
@@ -128,8 +211,9 @@ class ManageController extends Controller
         $mode   =   'framework';
         $title  =   'Create Framework';
         $label  =   'Framework';
+        $route  =   'framework.store';
 
-        return view('manage.create', compact('mode','title','label'));
+        return view('manage.create', compact('mode','title','label','route'));
     }
 
     public function frameworkStore(Request $request){
@@ -143,12 +227,34 @@ class ManageController extends Controller
 
             Framework::create(['name'=>$request->name]);
 
-            return redirect()->route('manage.index')->with('success', 'Programming language has been created successfully');
+            return redirect()->route('manage.index')->with('success', 'Framework has been created successfully');
         }
     }
 
     public function frameworkDelete(Request $request){
 
         // return view('manage.index');
+    }
+
+    public function frameworkEdit(Request $request){
+
+        $title  =   'Update Framework System';
+        $label  =   'Framework System';
+        $route  =   'framework.update';
+        
+        $detail  =   Framework::find($request->id);
+
+        return view('manage.create', compact('title','label','route','detail'));
+    }
+
+    public function frameworkUpdate(Request $request){
+
+        $os = Framework::find($request->id);
+    
+        if ($os) {
+            $os->update(['name' => $request->name]);
+        }
+    
+        return redirect()->route('manage.index')->with('success', 'Framework has been updated successfully');
     }
 }

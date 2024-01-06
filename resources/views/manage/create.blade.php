@@ -32,16 +32,8 @@
             <div class="container-fluid py-4">
                 <div class="card">
                     <div class="card-body pt-4 p-3">
-                        @if($mode == 'database')
-                            <form action="{{ route('database.store') }}" method="POST" role="form text-left">
-                        @elseif($mode == 'os')
-                            <form action="{{ route('os.store') }}" method="POST" role="form text-left">
-                        @elseif($mode == 'language')
-                            <form action="{{ route('language.store') }}" method="POST" role="form text-left">
-                        @elseif($mode == 'framework')
-                            <form action="{{ route('framework.store') }}" method="POST" role="form text-left">
-                        @endif
-
+                        
+                        <form action="{{ route($route) }}" method="POST" role="form text-left">
                             @csrf
                             @if($errors->any())
                                 <div class="mt-3  alert alert-primary alert-dismissible fade show" role="alert">
@@ -76,7 +68,17 @@
                                     <div class="form-group">
                                         <label for="name" class="form-control-label">{{ $label }}</label>
                                         <div class="@error('name')border border-danger rounded-3 @enderror">
-                                            <input type="text" class="form-control" aria-label="Default select example" name="name" id="template">
+                                            @if(isset($detail->id))
+                                                <input type="hidden" name="id" value="{{ $detail->id }}" >
+                                            @endif
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                aria-label="Default select example" 
+                                                name="name" 
+                                                value=" @if(isset($detail->name)) {{$detail->name}} @endif"
+                                                id="template"
+                                                required>
                                             @error('name')
                                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                             @enderror
