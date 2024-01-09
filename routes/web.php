@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     
     Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
+    Route::get('/project/{sort}/{by}', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index.sort');
     Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
     Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
 

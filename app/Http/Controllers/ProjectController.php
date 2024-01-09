@@ -20,9 +20,37 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects   =   Project::where('user_id',Auth::user()->id)->paginate(20);
+        $query = Project::where('user_id', Auth::user()->id);
+        $by     =  $request->by == 'asc' ? 'ASC' : 'DESC'; 
+
+        if ($request->sort == 'name') {
+
+            $query->orderBy('name', $by);
+
+        } else if( $request->sort == 'os' ){
+
+            $query->orderBy('operating_system', $by);
+            
+        }else if( $request->sort == 'lang' ){
+
+            $query->orderBy('language', $by);
+
+        }else if( $request->sort == 'framework' ){
+
+            $query->orderBy('framework', $by);
+
+        }else if( $request->sort == 'db' ){
+
+            $query->orderBy('database', $by);
+
+        }else{
+            $query->orderBy('created_at', 'DESC'); // You can adjust the default sorting logic
+        }
+        
+        $projects = $query->paginate(20);
+
         return view('project.index', compact('projects'));
     }
 
