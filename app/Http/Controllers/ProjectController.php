@@ -22,9 +22,12 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
+        
         $query = Project::where('user_id', Auth::user()->id);
         $by     =  $request->by == 'asc' ? 'ASC' : 'DESC'; 
 
+        
+        // sorting portion
         if ($request->sort == 'name') {
 
             $query->orderBy('name', $by);
@@ -48,6 +51,7 @@ class ProjectController extends Controller
         }else{
             $query->orderBy('created_at', 'DESC'); // You can adjust the default sorting logic
         }
+        
         
         $projects = $query->paginate(20);
         $operatingSystems   =   OperatingSystem::all();

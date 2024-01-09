@@ -32,7 +32,7 @@
                               <div>
                                   <h5 class="mb-0"></h5>
                               </div>
-                              <form action="">
+                              <form action="{{route('project.index.filter')}}" method="post" >
                                 <select name="os" id="">
                                   <option selected disabled >OS</option>
                                   @foreach($operatingSystems as $operatingSystem )
