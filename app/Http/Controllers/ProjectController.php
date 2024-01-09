@@ -50,8 +50,12 @@ class ProjectController extends Controller
         }
         
         $projects = $query->paginate(20);
+        $operatingSystems   =   OperatingSystem::all();
+        $languages          =   Language::all();
+        $frameworks         =   Framework::all();
+        $databases          =   DatabaseLists::all();
 
-        return view('project.index', compact('projects'));
+        return view('project.index', compact('projects','operatingSystems','languages','frameworks','databases'));
     }
 
     /**

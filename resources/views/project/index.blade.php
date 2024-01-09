@@ -27,6 +27,41 @@
                                 <!-- <a href="" id="chooseTemplates" onclick="alert('dddd');" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a> -->
                             </div>
                         </div>
+                        <div class="card-header pb-0">
+                          <div class="d-flex flex-row justify-content-between">
+                              <div>
+                                  <h5 class="mb-0"></h5>
+                              </div>
+                              <form action="">
+                                <select name="os" id="">
+                                  <option selected disabled >OS</option>
+                                  @foreach($operatingSystems as $operatingSystem )
+                                    <option value="{{$operatingSystem->name}}">{{$operatingSystem->name}}</option>
+                                  @endforeach
+                                </select>
+                                <select name="language" id="">
+                                  <option selected disabled value="">Languages</option>
+                                  @foreach($languages as $language)
+                                    <option value="{{$language->name}}">{{$language->name}}</option>
+                                  @endforeach
+                                </select>
+                                <select name="framework" id="">
+                                  <option selected disabled value="">Frameworks</option>
+                                  @foreach($frameworks as $framework)
+                                    <option value="{{$framework->name}}">{{$framework->name}}</option>
+                                  @endforeach
+                                </select>
+                                <select  name="database" id="">
+                                  <option selected disabled value="">Databases</option>
+                                  @foreach($databases as $database)
+                                    <option value="{{$database->name}}">{{$database->name}}</option>
+                                  @endforeach
+                                </select>
+                                <input type="text" name="text" id="">
+                                <input type="submit" value="Search">
+                              </form>
+                          </div>
+                      </div>
                         <div class="card-body px-0 pt-0 pb-2">
 
                             @if ($errors->any())
@@ -143,7 +178,7 @@
                                                 Backup</th>
                                             <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th> -->
                                             <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th> -->
-                                            <th class="text-secondary opacity-7">Action</th>
+                                            {{-- <th class="text-secondary opacity-7">Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -218,13 +253,13 @@
                               <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                             </td> -->
 
-                                                    <td class="align-middle">
+                                                    {{-- <td class="align-middle">
                                                         <a href="javascript:;"
                                                             class="text-secondary font-weight-bold text-xs"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Edit
                                                         </a>
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @endforeach
                                         @else
