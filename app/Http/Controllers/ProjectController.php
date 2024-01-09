@@ -23,7 +23,6 @@ class ProjectController extends Controller
     public function index()
     {
         $projects   =   Project::where('user_id',Auth::user()->id)->paginate(20);
-        
         return view('project.index', compact('projects'));
     }
 
@@ -93,7 +92,8 @@ class ProjectController extends Controller
             'name'                      => ['required', 'max:50'],
             'url'                       => ['required', 'url', 'unique:projects,url'],
             'ip'                        => ['required', 'ip'],
-            'secondary_ip'              => ['nullable', 'ip'],
+            'secondary_ip'              => ['nullable'],
+            // 'secondary_ip'              => ['nullable', 'ip'],
             'operating_system'          => ['required'],
             'operating_system_version'  => ['required', 'between:0,99.99'],
             'language'                  => ['required'],
@@ -110,15 +110,21 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            // Storage::disk('local')->put('example.txt', $request->file('file'));
-            // dd($request->file('file'));
+
             $file = $request->file('file');
             $fileName = now()->format('YmdHis') . '_' . $file->getClientOriginalName();
+            
             $file->storeAs('public/files', $fileName);
-            $file->move('public/files',$file);
+            // $request->file  = $fileName;
+            // $requestData = $request->all();
+            // $requestData['file'] = $fileName;
+            // echo $fileName;
+            // $request->merge($requestData);
+            (new Project)->storeProject($request, $fileName);
+        }else{
+            (new Project)->storeProject($request);
         }
 
-        (new Project)->storeProject($request);
         (new Template)->storeTemplate($request, Auth::user()->id);
 
         return redirect()->route('project.index')->with('success', 'Project detail has been created');

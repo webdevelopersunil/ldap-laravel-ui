@@ -33,7 +33,7 @@ class Project extends Model
         'is_backup',
     ];
 
-    public function storeProject($request){
+    public function storeProject($request, $fileName){
 
             $project                =   new Project();
             $project->name          =   $request['name'];
@@ -53,8 +53,13 @@ class Project extends Model
             $project->is_dr         =   $request['is_dr'];
             $project->is_vapt_done  =   $request['is_vapt_done'];
             $project->is_backup     =   $request['is_backup'];
+            
+            if( isset($fileName) && !empty($fileName) ){
+                $project->file      =   $fileName;
+            }
+            
             $project->save();
-
+            
             return $project;
     }
 }

@@ -28,8 +28,8 @@ Route::get('ldap', function (Request $request) {
 
 Auth::routes();
 
-Route::group(['middleware' => ['role:Admin', 'auth']], function () {
-    
+Route::group(['middleware' => ['auth']], function () {
+     
     // Management Index Route
     Route::get('/manage/manage/index', [ManageController::class, 'manageIndex'])->name('manage.index');
 
