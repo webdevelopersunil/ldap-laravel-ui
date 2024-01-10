@@ -67,7 +67,8 @@ class LoginController extends Controller
             $connection = Container::getConnection('default');
             $record = $connection->query()->findBy('samaccountname', $request->cpfNo );
             if(!$record) {
-                abort(403);
+                // abort(403);
+                return redirect()->route('login')->with('error', 'Invalid credentials');
             }
             if ( $connection->auth()->attempt($record['dn'], $request->password )) {
                 $user = User::where('cpfNo', $request->cpfNo)->first();

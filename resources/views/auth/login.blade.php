@@ -13,12 +13,24 @@
                   <h3 class="font-weight-bolder text-info text-gradient">Login</h3>
                 </div>
                 <div class="card-body">
+
+                  @if(session('error'))
+                  <div class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
+                      <span class="alert-text text-white">{{ session('error') }}</span>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                          <i class="fa fa-close" aria-hidden="true"></i>
+                      </button>
+                  </div>
+                @endif
+              
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <label>{{ __('cpfNo') }}</label>
                     <div class="mb-3">
+                      
                         <!-- <input id="cpfNo" type="text" class="form-control @error('cpfNo') is-invalid @enderror" name="cpfNo" value="{{ old('cpfNo') }}" required  autofocus> -->
-                        <input id="cpfNo" type="text" class="form-control @error('cpfNo') is-invalid @enderror" name="cpfNo" value="11008872" required  autofocus>
+                        <input id="cpfNo" type="text" class="form-control @error('cpfNo') is-invalid @enderror" name="cpfNo" value="" required  autofocus>
                         @error('cpfNo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -28,7 +40,7 @@
                     <label>{{ __('Password') }}</label>
                     <div class="mb-3">
                     <!-- <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"> -->
-                      <input id="password" value="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                      <input id="password" value="" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -36,8 +48,8 @@
                         @enderror
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
-                      <label class="form-check-label" for="rememberMe">{{ __('Remember Me') }}</label>
+                      {{-- <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
+                      <label class="form-check-label" for="rememberMe">{{ __('Remember Me') }}</label> --}}
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">{{ __('Login') }}</button>
