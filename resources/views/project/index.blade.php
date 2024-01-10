@@ -33,10 +33,13 @@
                                   <h5 class="mb-0"></h5>
                               </div>
                               <form action="{{route('project.index.filter')}}" method="post" >
+                                @csrf
                                 <select name="os" id="">
                                   <option selected disabled >OS</option>
                                   @foreach($operatingSystems as $operatingSystem )
-                                    <option value="{{$operatingSystem->name}}">{{$operatingSystem->name}}</option>
+                                    <option value="{{$operatingSystem->name}}">
+                                      {{$operatingSystem->name}}
+                                    </option>
                                   @endforeach
                                 </select>
                                 <select name="language" id="">
@@ -254,7 +257,7 @@
                             </td> -->
 
                                                     {{-- <td class="align-middle">
-                                                        <a href="javascript:;"
+                                                        <a href="{{ route('product.edit',$project->id) }}"
                                                             class="text-secondary font-weight-bold text-xs"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Edit

@@ -78,7 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
     Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
     Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
-
+    Route::get('/project/edit/{id}', [App\Http\Controllers\ProjectController::class, 'edit'])->name('product.edit');
+    
     
     // Templates Routes
     Route::get('/template', [App\Http\Controllers\ProjectController::class, 'templatesIndex'])->name('template.index');

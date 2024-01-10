@@ -22,11 +22,27 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         $query = Project::where('user_id', Auth::user()->id);
         $by     =  $request->by == 'asc' ? 'ASC' : 'DESC'; 
 
-        
+        if ($request->isMethod('post')){
+            
+            // os language framework database
+            if (isset($request->os) && !empty($request->os)) {
+                $query->where('operating_system', 'LIKE', '%' . $request->os . '%');
+            }
+            if (isset($request->language) && !empty($request->language)) {
+                $query->where('language', 'LIKE', '%' . $request->language . '%');
+            }
+            if (isset($request->framework) && !empty($request->framework)) {
+                $query->where('framework', 'LIKE', '%' . $request->framework . '%');
+            }
+            if (isset($request->database) && !empty($request->database)) {
+                $query->where('database', 'LIKE', '%' . $request->database . '%');
+            }
+        }
+
         // sorting portion
         if ($request->sort == 'name') {
 
@@ -177,9 +193,9 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        dd($request->id);
     }
 
     /**
