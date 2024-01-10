@@ -27,8 +27,7 @@ class ProjectController extends Controller
         $by     =  $request->by == 'asc' ? 'ASC' : 'DESC'; 
 
         if ($request->isMethod('post')){
-            
-            // os language framework database
+            // Filteration section
             if (isset($request->os) && !empty($request->os)) {
                 $query->where('operating_system', 'LIKE', '%' . $request->os . '%');
             }
@@ -41,6 +40,12 @@ class ProjectController extends Controller
             if (isset($request->database) && !empty($request->database)) {
                 $query->where('database', 'LIKE', '%' . $request->database . '%');
             }
+            if (isset($request->text) && !empty($request->text)) {
+                $query->where(function ($query) use ($request) {
+                    $query->where('url', 'LIKE', '%' . $request->text . '%')
+                          ->orWhere('name', 'LIKE', '%' . $request->text . '%');
+                });
+            }            
         }
 
         // sorting portion
