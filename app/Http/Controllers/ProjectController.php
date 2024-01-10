@@ -23,11 +23,18 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
 
-        $query = Project::where('user_id', Auth::user()->id);
+        $user   =   Auth::user();
+        $query  =   new Project();
         $by     =  $request->by == 'asc' ? 'ASC' : 'DESC'; 
 
+        // Role Specific
+        if($user->hasRole('Admin')){
+            $query->where('user_id', $user->id);
+        }
+
+        // Filteration section
         if ($request->isMethod('post')){
-            // Filteration section
+            
             if (isset($request->os) && !empty($request->os)) {
                 $query->where('operating_system', 'LIKE', '%' . $request->os . '%');
             }
@@ -50,31 +57,25 @@ class ProjectController extends Controller
 
         // sorting portion
         if ($request->sort == 'name') {
-
             $query->orderBy('name', $by);
 
         } else if( $request->sort == 'os' ){
-
             $query->orderBy('operating_system', $by);
             
         }else if( $request->sort == 'lang' ){
-
             $query->orderBy('language', $by);
 
         }else if( $request->sort == 'framework' ){
-
             $query->orderBy('framework', $by);
 
         }else if( $request->sort == 'db' ){
-
             $query->orderBy('database', $by);
 
         }else{
             $query->orderBy('created_at', 'DESC'); // You can adjust the default sorting logic
         }
         
-        
-        $projects = $query->paginate(20);
+        $projects           =   $query->paginate(20);
         $operatingSystems   =   OperatingSystem::all();
         $languages          =   Language::all();
         $frameworks         =   Framework::all();
