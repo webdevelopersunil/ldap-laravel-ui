@@ -25,11 +25,11 @@ class ProjectController extends Controller
     {
 
         $user   =   Auth::user();
-        $query  =   new Project();
-        $by     =  $request->by == 'asc' ? 'ASC' : 'DESC'; 
+        $by     =  $request->by == 'asc' ? 'ASC' : 'DESC';
+        $query  =   Project::query();
 
         // Role Specific
-        if($user->hasRole('Admin')){
+        if(!$user->hasRole('Admin')){
             $query->where('user_id', $user->id);
         }
 
@@ -37,18 +37,23 @@ class ProjectController extends Controller
         if ($request->isMethod('post')){
             
             if (isset($request->os) && !empty($request->os)) {
+
                 $query->where('operating_system', 'LIKE', '%' . $request->os . '%');
             }
             if (isset($request->language) && !empty($request->language)) {
+
                 $query->where('language', 'LIKE', '%' . $request->language . '%');
             }
             if (isset($request->framework) && !empty($request->framework)) {
+
                 $query->where('framework', 'LIKE', '%' . $request->framework . '%');
             }
             if (isset($request->database) && !empty($request->database)) {
+
                 $query->where('database', 'LIKE', '%' . $request->database . '%');
             }
             if (isset($request->text) && !empty($request->text)) {
+                
                 $query->where(function ($query) use ($request) {
                     $query->where('url', 'LIKE', '%' . $request->text . '%')
                           ->orWhere('name', 'LIKE', '%' . $request->text . '%');
@@ -77,6 +82,7 @@ class ProjectController extends Controller
         }
         
         $projects           =   $query->paginate(20);
+        // dd($projects);
         $operatingSystems   =   OperatingSystem::all();
         $languages          =   Language::all();
         $frameworks         =   Framework::all();

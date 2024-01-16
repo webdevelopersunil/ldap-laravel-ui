@@ -25,26 +25,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if( Auth::user()->hasRole('Admin') ){
+        $user_id            =   Auth::user()->id;
 
-            $user_id            =   Auth::user()->id;
+        if( Auth::user()->hasRole('Admin') ){
             $portals            =   Project::count();
             $back_up_configured =   Project::where( [ 'is_backup'=>'YES' ] )->count();
             $vapt               =   Project::where( [ 'is_vapt_done'=>'YES' ] )->count();
             $dr                 =   Project::where( [ 'is_dr'=>'YES' ] )->count();
+            $websites           =   Project::orderBy('id', 'desc')->paginate(20);
 
         }else{
 
-            $user_id            =   Auth::user()->id;
             $portals            =   Project::where( 'user_id', $user_id )->count();
             $back_up_configured =   Project::where( [ 'user_id'=>$user_id, 'is_backup'=>'YES' ] )->count();
             $vapt               =   Project::where( [ 'user_id'=>$user_id, 'is_vapt_done'=>'YES' ] )->count();
             $dr                 =   Project::where( [ 'user_id'=>$user_id, 'is_dr'=>'YES' ] )->count();
+            $websites           =   Project::where( 'user_id', $user_id )->orderBy('id', 'desc')->paginate(20);
         }
         
-        
-        $websites = Project::orderBy('id', 'desc')->paginate(20);
-
         return view('user.dashboard', compact('websites','portals','back_up_configured','vapt','dr') );
     }
 }
