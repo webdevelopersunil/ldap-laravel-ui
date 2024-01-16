@@ -28,9 +28,9 @@ Route::get('ldap', function (Request $request) {
 
 Auth::routes();
 
-Route::fallback(function () {
-    return redirect()->route('home');
-});
+// Route::fallback(function () {
+//     return redirect()->route('home');
+// });
 
 Route::group(['middleware' => ['auth']], function () {
      
@@ -87,6 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/edit/website/{id}', [App\Http\Controllers\ProjectController::class, 'editWebsite'])->name('edit.website');
     Route::post('/update/website', [App\Http\Controllers\ProjectController::class, 'websiteUpdate'])->name('website.update');
+    Route::get('/website/delete/{id}', [ProjectController::class, 'deleteWebsite'])->name('delete.website');
+
     
     
     // Templates Routes

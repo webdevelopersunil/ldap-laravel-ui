@@ -262,6 +262,15 @@
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Edit
                                                         </a>
+                                                        &nbsp|&nbsp
+                                                        <a href="{{ route('delete.website', $project->id) }}"
+   class="text-secondary font-weight-bold text-xs"
+   data-toggle="tooltip"
+   data-original-title="Delete website"
+   id="deleteWebsiteLink"
+   onclick="return confirm('Are you sure you want to delete this website?');">
+   Delete
+</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -337,6 +346,14 @@
             </div>
         </div>
     </main>
+
+    <script>
+      document.getElementById('deleteWebsiteLink').addEventListener('click', function (event) {
+          if (!confirm('Are you sure you want to delete this website record?')) {
+              event.preventDefault();
+          }
+      });
+    </script>
 
 
 @endsection

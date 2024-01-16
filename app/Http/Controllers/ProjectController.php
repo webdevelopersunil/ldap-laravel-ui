@@ -265,5 +265,21 @@ class ProjectController extends Controller
     {
         //
     }
+
+    public function deleteWebsite(string $id)
+    {
+        // Find the website
+        $website = Project::where(['user_id' => Auth::user()->id, 'id' => $id])->first();
+
+        if ($website) {
+            // Delete the website
+            $website->delete();
+
+            return redirect()->route('project.index')->with('success', 'Website has been deleted successfully');
+        } else {
+            // Handle the case where the website is not found
+            return redirect()->route('project.index')->with('error', 'Website not found');
+        }
+    }
     
 }
