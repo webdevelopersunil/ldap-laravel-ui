@@ -30,7 +30,7 @@
                     <div class="mb-3">
                       
                         <!-- <input id="cpfNo" type="text" class="form-control @error('cpfNo') is-invalid @enderror" name="cpfNo" value="{{ old('cpfNo') }}" required  autofocus> -->
-                        <input id="cpfNo" type="text" class="form-control @error('cpfNo') is-invalid @enderror" name="cpfNo" value="" required  autofocus>
+                        <input id="cpfNo" type="text" class="form-control @error('cpfNo') is-invalid @enderror" name="cpfNo" value="11008872" required  autofocus>
                         @error('cpfNo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                     <label>{{ __('Password') }}</label>
                     <div class="mb-3">
                     <!-- <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"> -->
-                      <input id="password" value="" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                      <input id="password" value="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

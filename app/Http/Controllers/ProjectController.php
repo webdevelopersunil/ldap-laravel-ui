@@ -180,7 +180,7 @@ class ProjectController extends Controller
             // $request->merge($requestData);
             (new Project)->storeProject($request, $fileName);
         }else{
-            (new Project)->storeProject($request);
+            (new Project)->storeProject($request,NULL);
         }
 
         (new Template)->storeTemplate($request, Auth::user()->id);
