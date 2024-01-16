@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\TemplateController;
 use App\Models\DatabaseLists;
 use App\Models\Framework;
+use Illuminate\Validation\Rule;
 use App\Models\Language;
 use App\Models\OperatingSystem;
 use Illuminate\Cache\DatabaseLock;
@@ -195,17 +196,66 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function editWebsite($id)
     {
-        dd($request->id);
+        
+        $website            =   Project::where( [ 'user_id'=>Auth::user()->id, 'id'=>$id ] )->first();
+        $operatingSystems   =   OperatingSystem::all();
+        $languages          =   Language::all();
+        $frameworks         =   Framework::all();
+        $databases          =   DatabaseLists::all();
+
+        if($website){
+            return view('project.edit', compact('website','operatingSystems','languages','frameworks','databases'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function websiteUpdate(Request $request)
     {
-        //
+        
+        $attributes = request()->validate([
+            'name'                      => ['required', 'max:50'],
+            'url' => ['required', 'url', Rule::unique('projects', 'url')->ignore($request->id)],
+            'ip'                        => ['required', 'ip'],
+            'secondary_ip'              => ['nullable'],
+            // 'secondary_ip'              => ['nullable', 'ip'],
+            'operating_system'          => ['required'],
+            'operating_system_version'  => ['required', 'between:0,99.99'],
+            'language'                  => ['required'],
+            'language_version'          => ['required', 'between:0,99.99'],
+            'framework'                 => ['required'],
+            'framework_version'         => ['required', 'between:0,99.99'],
+            'database'                  => ['required'],
+            'database_version'          => ['required', 'between:0,99.99'],
+            'is_exposed_to_content'     => ['required', 'in:YES,NO'],
+            'is_dr'                     => ['required','in:YES,NO'],
+            'is_vapt_done'              => ['required','in:YES,NO'],
+            'is_backup'                 => ['required','in:YES,NO'],
+            'file'                      => ['mimes:jpeg,png,pdf,csv', 'max:2048'],
+        ]);
+        
+        try {
+            $data = $request->except('_token');
+        
+            // Update the project
+            $affectedRows = Project::where(['user_id' => Auth::user()->id, 'id' => $request->id])->update($data);
+        
+            if ($affectedRows > 0) {
+                
+                return redirect()->route('project.index')->with('success', 'Website detail has been updated');
+
+            } else {
+                
+                return redirect()->route('project.index')->with('success', 'No records were updated');
+            }
+        } catch (\Exception $e) {
+            // Handle exceptions
+            return redirect()->route('project.index')->with('error', 'Failed to update website details');
+        }
+        
     }
 
     /**

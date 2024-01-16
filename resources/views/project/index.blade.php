@@ -181,7 +181,7 @@
                                                 Backup</th>
                                             <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th> -->
                                             <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th> -->
-                                            {{-- <th class="text-secondary opacity-7">Action</th> --}}
+                                            <th class="text-secondary opacity-7">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -256,13 +256,13 @@
                               <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                             </td> -->
 
-                                                    {{-- <td class="align-middle">
-                                                        <a href="{{ route('product.edit',$project->id) }}"
+                                                    <td class="align-middle">
+                                                        <a href="{{ route('edit.website',$project->id) }}"
                                                             class="text-secondary font-weight-bold text-xs"
                                                             data-toggle="tooltip" data-original-title="Edit user">
                                                             Edit
                                                         </a>
-                                                    </td> --}}
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @else

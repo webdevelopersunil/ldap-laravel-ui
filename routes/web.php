@@ -84,6 +84,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/project/create', [App\Http\Controllers\ProjectController::class, 'create'])->name('project.create');
     Route::post('/project/store', [App\Http\Controllers\ProjectController::class, 'store'])->name('project.store');
     Route::get('/project/edit/{id}', [App\Http\Controllers\ProjectController::class, 'edit'])->name('product.edit');
+
+    Route::get('/edit/website/{id}', [App\Http\Controllers\ProjectController::class, 'editWebsite'])->name('edit.website');
+    Route::post('/update/website', [App\Http\Controllers\ProjectController::class, 'websiteUpdate'])->name('website.update');
     
     
     // Templates Routes
