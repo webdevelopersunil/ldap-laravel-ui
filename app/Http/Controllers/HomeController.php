@@ -25,12 +25,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_id            =   Auth::user()->id;
+        if( Auth::user()->hasRole('Admin') ){
 
-        $portals            =   Project::where( 'user_id', $user_id )->count();
-        $back_up_configured =   Project::where( [ 'user_id'=>$user_id, 'is_backup'=>'YES' ] )->count();
-        $vapt               =   Project::where( [ 'user_id'=>$user_id, 'is_vapt_done'=>'YES' ] )->count();
-        $dr                 =   Project::where( [ 'user_id'=>$user_id, 'is_dr'=>'YES' ] )->count();
+            $user_id            =   Auth::user()->id;
+            $portals            =   Project::count();
+            $back_up_configured =   Project::where( [ 'is_backup'=>'YES' ] )->count();
+            $vapt               =   Project::where( [ 'is_vapt_done'=>'YES' ] )->count();
+            $dr                 =   Project::where( [ 'is_dr'=>'YES' ] )->count();
+
+        }else{
+
+            $user_id            =   Auth::user()->id;
+            $portals            =   Project::where( 'user_id', $user_id )->count();
+            $back_up_configured =   Project::where( [ 'user_id'=>$user_id, 'is_backup'=>'YES' ] )->count();
+            $vapt               =   Project::where( [ 'user_id'=>$user_id, 'is_vapt_done'=>'YES' ] )->count();
+            $dr                 =   Project::where( [ 'user_id'=>$user_id, 'is_dr'=>'YES' ] )->count();
+        }
+        
         
         $websites = Project::orderBy('id', 'desc')->paginate(20);
 
