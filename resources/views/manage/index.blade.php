@@ -23,7 +23,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h6>{{ __("Operating System's") }}</h6>
+              <h6>{{ __("Operating System List") }}</h6>
               <p class="text-sm" style="text-align: right;" >
                 <a href="{{ route('os.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add') }}</a>
               </p>
@@ -65,7 +65,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h6>{{ __("Database's") }}</h6>
+              <h6>{{ __("Database List") }}</h6>
               <p class="text-sm" style="text-align: right;" >
                 <a href="{{ route('database.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add') }}</a>
               </p>
@@ -105,7 +105,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h6>{{ __("Language's") }}</h6>
+              <h6>{{ __("Language List") }}</h6>
               <p class="text-sm" style="text-align: right;" >
                 <a href="{{ route('language.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add') }}</a>
               </p>
@@ -146,7 +146,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h6>{{ __("Framework's") }}</h6>
+              <h6>{{ __("Framework List") }}</h6>
               <p class="text-sm" style="text-align: right;" >
                 <a href="{{ route('framework.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add') }}</a>
               </p>
