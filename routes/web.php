@@ -28,6 +28,10 @@ Route::get('ldap', function (Request $request) {
 
 Auth::routes();
 
+Route::fallback(function () {
+    return redirect()->route('home');
+});
+
 Route::group(['middleware' => ['auth']], function () {
      
     // Management Index Route
@@ -65,7 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+    // Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile', function(){ return redirect()->route('home'); })->name('profile.index');
     
 
     // for filteration
