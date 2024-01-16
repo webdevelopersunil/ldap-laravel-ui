@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,11 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $portals            =   Project::count();
-        $back_up_configured =   Project::count();
-        $vapt               =   Project::count();
-        $dr                 =   Project::count();
+        $user_id            =   Auth::user()->id;
 
+        $portals            =   Project::where( 'user_id', $user_id )->count();
+        $back_up_configured =   Project::where( [ 'user_id'=>$user_id, 'is_backup'=>'YES' ] )->count();
+        $vapt               =   Project::where( [ 'user_id'=>$user_id, 'is_vapt_done'=>'YES' ] )->count();
+        $dr                 =   Project::where( [ 'user_id'=>$user_id, 'is_dr'=>'YES' ] )->count();
+        
         $websites = Project::orderBy('id', 'desc')->paginate(20);
 
         return view('user.dashboard', compact('websites','portals','back_up_configured','vapt','dr') );

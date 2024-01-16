@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Portal's</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Portals</p>
                     <h5 class="font-weight-bolder mb-0">
                     {{ $portals }}
                       <!-- <span class="text-success text-sm font-weight-bolder">{{ $portals }}</span> -->
@@ -40,7 +40,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Back-up Configured's</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Back-up Configureds</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{$back_up_configured}}
                       <!-- <span class="text-success text-sm font-weight-bolder">+3%</span> -->
@@ -62,7 +62,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Vapt</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Vapt Done</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{ $vapt }}
                       <!-- <span class="text-danger text-sm font-weight-bolder">-2%</span> -->
@@ -84,7 +84,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">DR</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">DR Configureds</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{$dr}}
                       <!-- <span class="text-success text-sm font-weight-bolder">+5%</span> -->

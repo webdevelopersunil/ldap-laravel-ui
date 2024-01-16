@@ -25,7 +25,7 @@
                     <div>
                         <h5 class="mb-0"></h5>
                     </div>
-                    <a href="{{ route('template.index') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Go Back') }}</a>
+                    <a href="{{ route('project.index') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Go Back') }}</a>
                 </div>
             </div>
 
