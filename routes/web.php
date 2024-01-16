@@ -94,10 +94,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Templates Routes
     Route::get('/template', [App\Http\Controllers\ProjectController::class, 'templatesIndex'])->name('template.index');
     Route::post('/set/template', [App\Http\Controllers\ProjectController::class, 'setTemplate'])->name('set.template');
-
-
-    // Route::get('/project/create/{id}', [App\Http\Controllers\ProjectController::class, 'setProjectTemplate'])->name('set.project.template');
-
     Route::get('/project/set/template/{id}', [App\Http\Controllers\ProjectController::class, 'projectSetTemplate'])->name('project.set.template');
     
 });
