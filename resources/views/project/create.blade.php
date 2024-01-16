@@ -284,7 +284,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_dr" class="form-control-label">{{ __('Is Directory') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_dr" class="form-control-label">{{ __('Is Disaster Recovery') }} <span style="color:red;" > * </span> </label>
                                         <div class="@error('is_dr')border border-danger rounded-3 @enderror">
                                             <select class="form-control" id="is_dr" name="is_dr" >
                                                 <option selected disabled class="fw-bold" >Please Select</option>
@@ -317,7 +317,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="is_backup" class="form-control-label">{{ __('Is Backup') }} <span style="color:red;" > * </span> </label>
+                                        <label for="is_backup" class="form-control-label">{{ __('Is Backup Recovery') }} <span style="color:red;" > * </span> </label>
                                         <div class="@error('is_backup')border border-danger rounded-3 @enderror">
                                             <select class="form-control" id="is_backup" name="is_backup" >
                                                 <option selected disabled class="fw-bold" >Please Select</option>
