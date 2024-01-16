@@ -116,21 +116,14 @@ class ProjectController extends Controller
     }
 
     public function setTemplate(Request $request){
-
-        $isFound    =   Template::find($request->template);
         
-        if( $isFound ){
+        $isFound    =   Template::find($request->template);
 
-            return redirect()->route('set.project.template',$request->template);
-
-        }else{
-            
-            return redirect()->route('set.project.template',$request->template);
-        }
+        return redirect()->route('project.set.template',$request->template);
     }
 
-    public function setProjectTemplate(Request $request){
-
+    public function projectSetTemplate(Request $request){
+        
         $operatingSystems   =   OperatingSystem::all();
         $languages          =   Language::all();
         $frameworks         =   Framework::all();
