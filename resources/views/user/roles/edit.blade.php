@@ -25,7 +25,7 @@
                     <div>
                         <h5 class="mb-0"></h5>
                     </div>
-                    <a href="{{ route('manage.index') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Go Back') }}</a>
+                    <a href="{{ route('users.list') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Go Back') }}</a>
                 </div>
             </div>
 
@@ -62,23 +62,50 @@
                                     </button>
                                 </div>
                             @endif
+                            
+                            @if(isset($user->id))
+                                <input type="hidden" name="id" value="{{ $user->id }}" >
+                            @endif
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="name" class="form-control-label">{{ $label }}</label>
-                                        <div class="@error('name')border border-danger rounded-3 @enderror">
-                                            @if(isset($detail->id))
-                                                <input type="hidden" name="id" value="{{ $detail->id }}" >
-                                            @endif
+                                        <label for="name" class="form-control-label">Email Address</label>
+                                        <div>
                                             <input 
                                                 type="text" 
                                                 class="form-control" 
-                                                aria-label="Default select example" 
-                                                name="name" 
-                                                value="@if(isset($detail->name)){{$detail->name}}@endif"
                                                 id="template"
+                                                value="{{ucfirst($user->name)}}"
+                                                disabled
                                                 required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email" class="form-control-label">User Name</label>
+                                        <div>
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                id="template"
+                                                value="{{ucfirst($user->email)}}"
+                                                disabled
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="name" class="form-control-label">Role</label>
+                                        <div class="@error('name')border border-danger rounded-3 @enderror">
+                                            <select class="form-control"  name="role" id="">
+                                                <option disabled selected>Please Select</option>
+                                                @foreach( $roles as $index => $role )
+                                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                                @endforeach
+                                            </select>
                                             @error('name')
                                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -88,7 +115,7 @@
                             </div>
 
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Create' }}</button>
+                                <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Update' }}</button>
                             </div>
 
                         </form>

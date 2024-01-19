@@ -4,6 +4,7 @@ use LdapRecord\Container;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -31,6 +32,14 @@ Auth::routes();
 // Route::fallback(function () {
 //     return redirect()->route('home');
 // });
+
+Route::group(['middleware' => ['auth']], function () {
+
+    // Manage Role
+    Route::get('/users/list', [UserController::class, 'list'])->name('users.list');
+    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/users/update', [UserController::class, 'update'])->name('users.update');
+});
 
 Route::group(['middleware' => ['auth']], function () {
      

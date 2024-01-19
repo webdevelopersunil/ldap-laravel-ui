@@ -19,6 +19,7 @@ class DatabaseLists extends Model
     // Mutator to set the 'name' attribute in uppercase and replace spaces with hyphens
     public function setNameAttribute($value){
         
-        $this->attributes['name'] = str_replace(' ', '-', strtoupper($value));
+        $this->attributes['name'] = trim($value);
+
     }
 }

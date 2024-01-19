@@ -20,8 +20,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Portals</p>
                     <h5 class="font-weight-bolder mb-0">
-                    {{ $portals }}
-                      <!-- <span class="text-success text-sm font-weight-bolder">{{ $portals }}</span> -->
+                        0
                     </h5>
                   </div>
                 </div>
@@ -42,8 +41,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Back-up Configured</p>
                     <h5 class="font-weight-bolder mb-0">
-                      {{$back_up_configured}}
-                      <!-- <span class="text-success text-sm font-weight-bolder">+3%</span> -->
+                    0
                     </h5>
                   </div>
                 </div>
@@ -64,8 +62,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Vapt Done</p>
                     <h5 class="font-weight-bolder mb-0">
-                      {{ $vapt }}
-                      <!-- <span class="text-danger text-sm font-weight-bolder">-2%</span> -->
+                    0
                     </h5>
                   </div>
                 </div>
@@ -86,8 +83,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">DR Configured</p>
                     <h5 class="font-weight-bolder mb-0">
-                      {{$dr}}
-                      <!-- <span class="text-success text-sm font-weight-bolder">+5%</span> -->
+                    0
                     </h5>
                   </div>
                 </div>
@@ -111,33 +107,46 @@
             <div class="card-header pb-0">
               <div class="row">
                 <div class="col-lg-6 col-7">
-                  <h6>Recent Website's</h6>
+                  <h6>Users List</h6>
                 </div>
               </div>
             </div>
-            
+
             <div class="card-body px-0 pb-2">
               <div class="table-responsive">
+                @if(session('error'))
+                    <div class="m-3  alert alert-danger alert-dismissible fade show" id="alert-success" role="alert">
+                            <span class="alert-text text-white">
+                            {{ session('error') }}</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                @endif
+                @if(session('success'))
+                    <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
+                        <span class="alert-text text-white">
+                        {{ session('success') }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                @endif
+                
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Website Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">OS/Version</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Language/Version</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Framework/Version</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Database/Version</th>
-
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is Exposed To Content</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is DR</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is Vapt Done</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Is Backup</th>
-
-
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">cpfNo</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
                     
-                    @foreach($websites as $index => $website)
+                    @foreach($users as $index => $user)
                   
                       <tr>
                         <td>
@@ -146,12 +155,10 @@
                               <img src="../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                            <h6>{{ ucfirst($website->name) }}</h6>
-                              <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">
-                                  <a href="{{ ucfirst($website->url) }}" target="_blank">
-                                    {{ ucfirst(Str::limit($website->url, 30)) }}
-                                  </a>
+                                <h6>{{ ucfirst($user->name) }}</h6>
+                                <p class="text-sm mb-0">
+                                <span class="font-weight-bold ms-1" style="color:#2684FF;" >
+                                    {{ ucfirst($user->email) }}
                                 </span>
                               </p>
                             </div>
@@ -161,7 +168,9 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->operating_system}} |</span>{{$website->operating_system}}
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6>{{$user->cpfNo}}</h6>
+                                </div>
                               </p>
                           </div>
                         </td>
@@ -169,7 +178,9 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->language}} |</span>{{$website->language_version}}
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6>{{  ucfirst($user->email) }}</h6>
+                                </div>
                               </p>
                           </div>
                         </td>
@@ -177,48 +188,22 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->framework}} |</span>{{$website->framework_version}}
+                                <span class="font-weight-bold ms-1" style="color:#2684FF;" >
+                                    @auth
+                                        @foreach(auth()->user()->roles as $role)
+                                            {{$role->name}}
+                                        @endforeach
+                                    @endauth
+                                </span>
                               </p>
                           </div>
                         </td>
 
                         <td>
                           <div class="avatar-group mt-2">
-                            <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->database}} |</span>{{$website->database_version}}
-                              </p>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="avatar-group mt-2">
-                            <p class="text-sm mb-0" style="text-align: center;" >
-                                <span class="font-weight-bold ms-1">{{$website->is_exposed_to_content}}</span>
-                              </p>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="avatar-group mt-2">
-                            <p class="text-sm mb-0" style="text-align: center;" >
-                                <span class="font-weight-bold ms-1">{{$website->is_dr}}</span>
-                              </p>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="avatar-group mt-2">
-                            <p class="text-sm mb-0" style="text-align: center;" >
-                                <span class="font-weight-bold ms-1">{{$website->is_vapt_done}}</span>
-                              </p>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="avatar-group mt-2">
-                            <p class="text-sm mb-0" style="text-align: center;" >
-                                <span class="font-weight-bold ms-1">{{$website->is_backup}}</span>
-                              </p>
+                                <a href="{{ route('users.edit', $user->id) }}">
+                                    Edit
+                                </a>
                           </div>
                         </td>
 
@@ -241,8 +226,8 @@
   </main>
 
     @section('script')
-    
-    <!-- Script Here -->
+
+        <!-- Script Here -->
 
     @endsection
 
