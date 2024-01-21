@@ -165,7 +165,7 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->operating_system}} |</span>{{$website->operating_system}}
+                                <span class="font-weight-bold ms-1">{{$website->operatingSystem->name}} |</span>{{$website->operating_system}}
                               </p>
                           </div>
                         </td>
@@ -173,7 +173,7 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->language}} |</span>{{$website->language_version}}
+                                <span class="font-weight-bold ms-1">{{$website->getLanguage->name}} |</span>{{$website->language_version}}
                               </p>
                           </div>
                         </td>
@@ -181,7 +181,7 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->framework}} |</span>{{$website->framework_version}}
+                                <span class="font-weight-bold ms-1">{{$website->getFramework->name}} |</span>{{$website->framework_version}}
                               </p>
                           </div>
                         </td>
@@ -189,7 +189,7 @@
                         <td>
                           <div class="avatar-group mt-2">
                             <p class="text-sm mb-0">
-                                <span class="font-weight-bold ms-1">{{$website->database}} |</span>{{$website->database_version}}
+                                <span class="font-weight-bold ms-1">{{$website->getDatabase->name}} |</span>{{$website->database_version}}
                               </p>
                           </div>
                         </td>
