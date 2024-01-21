@@ -196,10 +196,9 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editWebsite($id)
-    {
+    public function editWebsite($id){
         
-        $website            =   Project::where( [ 'user_id'=>Auth::user()->id, 'id'=>$id ] )->first();
+        $website            =   Project::where( [ 'user_id'=>Auth::user()->id, 'id'=>$id ] )->with('getLanguage','operatingSystem','getFramework','getDatabase')->first();
         $operatingSystems   =   OperatingSystem::all();
         $languages          =   Language::all();
         $frameworks         =   Framework::all();

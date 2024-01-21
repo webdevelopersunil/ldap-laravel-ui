@@ -128,8 +128,8 @@
                                             <select class="form-control" id="operating_system" name="operating_system" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
                                                     @foreach($operatingSystems as $operatingSystem)
-                                                        <option value="{{ $operatingSystem->name }}"
-                                                         @if( isset($website->operating_system) && $website->operating_system == $operatingSystem->name ) selected @endif >
+                                                        <option value="{{ $operatingSystem->id }}"
+                                                         @if( isset($website->operating_system) && $website->operating_system == $operatingSystem->id ) selected @endif >
                                                          {{ $operatingSystem->name }}
                                                         </option>
                                                     @endforeach
@@ -167,8 +167,8 @@
                                             <select class="form-control" id="language" name="language" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
                                                 @foreach($languages as $language)
-                                                    <option value="{{$language->name}}"
-                                                    @if( isset($website->language) && $website->language == $language->name ) selected @endif >
+                                                    <option value="{{$language->id}}"
+                                                    @if( isset($website->language) && $website->language == $language->id ) selected @endif >
                                                     {{$language->name}}
                                                 </option>
                                                 @endforeach
@@ -206,8 +206,8 @@
                                         <select class="form-control" id="framework" name="framework" >
                                             <option disabled selected>{{ __('Please Select') }}</option>
                                             @foreach($frameworks as $framework)
-                                                <option value="{{$framework->name}}"
-                                                @if( isset($website->framework) && $website->framework == $framework->name ) selected @endif >
+                                                <option value="{{$framework->id}}"
+                                                @if( isset($website->framework) && $website->framework == $framework->id ) selected @endif >
                                                 {{$framework->name}}
                                             </option>
                                             @endforeach
@@ -245,8 +245,8 @@
                                             <select class="form-control" id="database" name="database" >
                                                 <option disabled selected>{{ __('Please Select') }}</option>
                                                 @foreach($databases as $database)
-                                                    <option value="{{$database->name}}"
-                                                        @if( isset($website->database) && $website->database == $database->name ) selected @endif >
+                                                    <option value="{{$database->id}}"
+                                                        @if( isset($website->database) && $website->database == $database->id ) selected @endif >
                                                         {{$database->name}}
                                                     </option>
                                                 @endforeach
