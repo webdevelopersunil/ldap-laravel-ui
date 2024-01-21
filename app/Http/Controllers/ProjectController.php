@@ -283,7 +283,7 @@ class ProjectController extends Controller
 
     public function viewWebsite($id){
 
-        $website    =   Project::find($id);
+        $website    =   Project::with('getLanguage', 'operatingSystem', 'getFramework', 'getDatabase')->find($id);
         $user       =   User::find($website->user_id);
 
         return view('project.view', compact('website','user'));

@@ -51,10 +51,10 @@
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">IP:</strong> &nbsp; {{$website->ip}} &nbsp<strong class="text-dark">Secondary IP:</strong> &nbsp; {{$website->secondary_ip}} </li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; {{$website->name}}</li>
 
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Operating System:</strong> &nbsp; {{$website->operating_system}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->operating_system_version}}</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Language:</strong> &nbsp; {{$website->language}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->language_version}}</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Framework:</strong> &nbsp; {{$website->framework}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->framework_version}}</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Database:</strong> &nbsp; {{$website->database}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->database_version}}</li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Operating System:</strong> &nbsp; {{$website->operatingSystem->name}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->operating_system_version}}</li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Language:</strong> &nbsp; {{$website->getLanguage->name}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->language_version}}</li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Framework:</strong> &nbsp; {{$website->getFramework->name}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->framework_version}}</li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Database:</strong> &nbsp; {{$website->getDatabase->name}} &nbsp<strong class="text-dark">Version:</strong> &nbsp; {{$website->database_version}}</li>
 
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Is Exposed To Internet:</strong> &nbsp; {{$website->is_exposed_to_content}}</li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Is DR:</strong> &nbsp; {{$website->is_dr}}</li>
