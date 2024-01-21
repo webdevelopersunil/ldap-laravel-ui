@@ -34,8 +34,24 @@ class Project extends Model
         'is_backup',
     ];
 
-    public function storeProject($request, $fileName){
+    public function operatingSystem(){
+        return $this->belongsTo(OperatingSystem::class, 'operating_system');
+    }
 
+    public function getLanguage(){
+        return $this->belongsTo(Language::class, 'language');
+    }
+
+    public function getFramework(){
+        return $this->belongsTo(Framework::class, 'framework');
+    }
+
+    public function getDatabase(){
+        return $this->belongsTo(DatabaseLists::class, 'database');
+    }
+
+    public function storeProject($request, $fileName){
+            
             $project                =   new Project();
             $project->name          =   $request['name'];
             $project->url           =   $request['url'];

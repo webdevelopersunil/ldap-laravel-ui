@@ -202,27 +202,26 @@
                                                     </td>
                                                     <td>
                                                         <p class="text-xs font-weight-bold mb-0">
-                                                            {{ $project->operating_system }}</p>
+                                                            {{ $project->operatingSystem->name }}</p>
                                                         <p class="text-xs text-secondary mb-0">
                                                             {{ $project->operating_system_version }}</p>
                                                     </td>
 
                                                     <td>
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $project->language }}
-                                                        </p>
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $project->getLanguage->name }}</p>
                                                         <p class="text-xs text-secondary mb-0">
                                                             {{ $project->language_version }}</p>
                                                     </td>
 
                                                     <td>
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $project->framework }}
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $project->getFramework->name }}
                                                         </p>
                                                         <p class="text-xs text-secondary mb-0">
                                                             {{ $project->framework_version }}</p>
                                                     </td>
 
                                                     <td>
-                                                        <p class="text-xs font-weight-bold mb-0">{{ $project->database }}
+                                                        <p class="text-xs font-weight-bold mb-0">{{ $project->getDatabase->name }}
                                                         </p>
                                                         <p class="text-xs text-secondary mb-0">
                                                             {{ $project->database_version }}</p>

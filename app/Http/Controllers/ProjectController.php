@@ -82,7 +82,7 @@ class ProjectController extends Controller
             $query->orderBy('created_at', 'DESC'); // You can adjust the default sorting logic
         }
         
-        $projects           =   $query->paginate(20);
+        $projects           =   $query->with('getLanguage','operatingSystem','getFramework','getDatabase')->paginate(20);
         // dd($projects);
         $operatingSystems   =   OperatingSystem::all();
         $languages          =   Language::all();
