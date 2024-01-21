@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use App\Models\Project;
+use App\Models\Language;
 use App\Models\Template;
+use App\Models\Framework;
 use Illuminate\Http\Request;
+use App\Models\DatabaseLists;
+use App\Models\OperatingSystem;
+use Illuminate\Validation\Rule;
+use Illuminate\Cache\DatabaseLock;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\TemplateController;
-use App\Models\DatabaseLists;
-use App\Models\Framework;
-use Illuminate\Validation\Rule;
-use App\Models\Language;
-use App\Models\OperatingSystem;
-use Illuminate\Cache\DatabaseLock;
 
 class ProjectController extends Controller
 {
@@ -279,6 +280,14 @@ class ProjectController extends Controller
             // Handle the case where the website is not found
             return redirect()->route('project.index')->with('error', 'Website not found');
         }
+    }
+
+    public function viewWebsite($id){
+
+        $website    =   Project::find($id);
+        $user       =   User::find($website->user_id);
+
+        return view('project.view', compact('website','user'));
     }
     
 }

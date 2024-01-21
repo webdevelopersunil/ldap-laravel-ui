@@ -98,7 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update/website', [App\Http\Controllers\ProjectController::class, 'websiteUpdate'])->name('website.update');
     Route::get('/website/delete/{id}', [ProjectController::class, 'deleteWebsite'])->name('delete.website');
 
-    
+
+    Route::get('/view/website/{id}', [App\Http\Controllers\ProjectController::class, 'viewWebsite'])->name('view.website');
     
     // Templates Routes
     Route::get('/template', [App\Http\Controllers\ProjectController::class, 'templatesIndex'])->name('template.index');

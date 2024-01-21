@@ -21,7 +21,11 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Portals</p>
                     <h5 class="font-weight-bolder mb-0">
                     {{ $portals }}
-                      <!-- <span class="text-success text-sm font-weight-bolder">{{ $portals }}</span> -->
+                      <span class="text-success text-sm font-weight-bolder">
+                        <a href="" style="text-decoration:none;" >
+                          View
+                        </a>
+                      </span>
                     </h5>
                   </div>
                 </div>

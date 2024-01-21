@@ -257,6 +257,12 @@
                             </td> -->
 
                                                     <td class="align-middle">
+                                                        <a href="{{ route('view.website',$project->id) }}"
+                                                            class="text-secondary font-weight-bold text-xs"
+                                                            data-toggle="tooltip" data-original-title="Edit user">
+                                                            View
+                                                        </a>
+                                                        &nbsp|&nbsp
                                                         <a href="{{ route('edit.website',$project->id) }}"
                                                             class="text-secondary font-weight-bold text-xs"
                                                             data-toggle="tooltip" data-original-title="Edit user">

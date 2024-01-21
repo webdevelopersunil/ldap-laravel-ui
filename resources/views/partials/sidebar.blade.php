@@ -33,6 +33,7 @@
         <li class="nav-item">
           <a class="nav-link  
           {{ Route::currentRouteName() === 'project.index' ? 'active' : '' }} 
+          {{ Route::currentRouteName() === 'view.website' ? 'active' : '' }} 
           {{ Route::currentRouteName() === 'project.create' ? 'active' : '' }} 
           {{ Route::currentRouteName() === 'project.index.sort' ? 'active' : '' }}
           {{ Route::currentRouteName() === 'project.index.filter' ? 'active' : '' }}" href="{{ route('project.index') }}">
