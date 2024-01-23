@@ -63,7 +63,7 @@
                                                 <option selected >Go With Blank</option>
                                                 @foreach($templates as $index => $template)
                                                     <option class="" value="{{$template->id}}">
-                                                        {{$template->operating_system}} - {{$template->operating_system_version}} | {{$template->language}} - {{$template->language_version}} | {{$template->framework}} - {{$template->framework_version}} | {{$template->database}} - {{$template->database_version}}
+                                                        {{$template->operatingSystem->name}} - {{$template->operating_system_version}} | {{$template->getLanguage->name}} - {{$template->language_version}} | {{$template->getFramework->name}} - {{$template->framework_version}} | {{$template->getDatabase->name}} - {{$template->database_version}}
                                                     </option>
                                                 @endforeach
                                             </select>

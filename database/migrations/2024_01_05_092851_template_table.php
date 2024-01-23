@@ -14,14 +14,18 @@ return new class extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
             $table->string('user_id')->nullable();
-            $table->string('operating_system')->required();
+            $table->unsignedBigInteger('operating_system')->required();
             $table->string('operating_system_version')->nullable();
-            $table->string('language')->required();
+            $table->unsignedBigInteger('language')->required();
             $table->string('language_version')->required();
-            $table->string('framework')->required();
+            $table->unsignedBigInteger('framework')->required();
             $table->string('framework_version')->required();
-            $table->string('database')->required();
+            $table->unsignedBigInteger('database')->required();
             $table->string('database_version')->required();
+            $table->foreign('operating_system')->references('id')->on('operating_systems')->onDelete('restrict');
+            $table->foreign('language')->references('id')->on('languages')->onDelete('restrict');
+            $table->foreign('framework')->references('id')->on('frameworks')->onDelete('restrict');
+            $table->foreign('database')->references('id')->on('database_lists')->onDelete('restrict');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -59,7 +59,21 @@ class ProjectController extends Controller
                     $query->where('url', 'LIKE', '%' . $request->text . '%')
                           ->orWhere('name', 'LIKE', '%' . $request->text . '%');
                 });
-            }            
+            }
+
+            // Dasboard Filter
+            if (isset($request->is_backup) && !empty($request->is_backup)) {
+
+                $query->where('is_backup', 'LIKE', '%' . $request->is_backup . '%');
+            }
+            if (isset($request->is_vapt_done) && !empty($request->is_vapt_done)) {
+
+                $query->where('is_vapt_done', 'LIKE', '%' . $request->is_vapt_done . '%');
+            }
+            if (isset($request->is_dr) && !empty($request->is_dr)) {
+
+                $query->where('is_dr', 'LIKE', '%' . $request->is_dr . '%');
+            }
         }
 
         // sorting portion
@@ -135,7 +149,7 @@ class ProjectController extends Controller
         $languages          =   Language::all();
         $frameworks         =   Framework::all();
         $databases          =   DatabaseLists::all();
-        $template           =   Template::find($request->id);
+        $template           =   Template::with('getLanguage', 'operatingSystem', 'getFramework', 'getDatabase')->find($request->id);
         // dd($template);
         
         return view('project.create', compact('operatingSystems','languages','frameworks','databases','template'));

@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Language;
+use App\Models\Framework;
+use App\Models\DatabaseLists;
+use App\Models\OperatingSystem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Template extends Model
 {
@@ -23,6 +27,22 @@ class Template extends Model
         'database',
         'database_version',
     ];
+
+    public function operatingSystem(){
+        return $this->belongsTo(OperatingSystem::class, 'operating_system');
+    }
+
+    public function getLanguage(){
+        return $this->belongsTo(Language::class, 'language');
+    }
+
+    public function getFramework(){
+        return $this->belongsTo(Framework::class, 'framework');
+    }
+
+    public function getDatabase(){
+        return $this->belongsTo(DatabaseLists::class, 'database');
+    }
 
     public function storeTemplate($template, $user_id){
 

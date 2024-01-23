@@ -1,5 +1,11 @@
 @extends('layouts.user')
 
+<style>
+  .view-btn{
+    text-decoration:none;
+  }
+</style>
+
 @section('content')
   
   @include('partials.sidebar')
@@ -21,15 +27,14 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Portals</p>
                     <h5 class="font-weight-bolder mb-0">
                     {{ $portals }}
-                      <span class="text-success text-sm font-weight-bolder">
-                        <a href="" style="text-decoration:none;" >
-                          View
-                        </a>
-                      </span>
+                      
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
+                    <span class="text-success text-sm font-weight-bolder">
+                      <a href="{{ route('project.index') }}" class="view-btn" > View </a>
+                    </span>
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
                     <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                   </div>
@@ -52,9 +57,19 @@
                   </div>
                 </div>
                 <div class="col-4 text-end">
+
+                    <span class="text-success text-sm font-weight-bolder">
+                      <a href="{{ route('project.index') }}" class="view-btn" onclick="document.getElementById('is_backup').submit();" > View </a>
+                    </span>
+                    <form id="is_backup" action="{{ route('project.index.filter') }}" method="post" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="is_backup" value="YES">
+                    </form>
+
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
                     <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -74,9 +89,15 @@
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
+
+                    <span class="text-success text-sm font-weight-bolder">
+                      <a href="{{ route('project.index') }}" class="view-btn" onclick="document.getElementById('is_vapt_done').submit();" > View </a>
+                    </span>
+                    <form id="is_vapt_done" action="{{ route('project.index.filter') }}" method="post" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="is_vapt_done" value="YES">
+                    </form>
+
                 </div>
               </div>
             </div>
@@ -91,14 +112,22 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">DR Configured</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{$dr}}
-                      <!-- <span class="text-success text-sm font-weight-bolder">+5%</span> -->
                     </h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
+                  
+                  <span class="text-success text-sm font-weight-bolder">
+                    <a href="{{ route('project.index') }}" class="view-btn" onclick="document.getElementById('is_dr').submit();" > View </a>
+                  </span>
+                  <form id="is_dr" action="{{ route('project.index.filter') }}" method="post" style="display: none;">
+                      @csrf
+                      <input type="hidden" name="is_dr" value="YES">
+                  </form>
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
                     <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                   </div>
+
                 </div>
               </div>
             </div>
