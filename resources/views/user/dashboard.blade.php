@@ -61,11 +61,6 @@
                     <span class="text-success text-sm font-weight-bolder">
                       <a href="{{ route('project.index') }}" class="view-btn" onclick="document.getElementById('is_backup').submit();" > View </a>
                     </span>
-                    <form id="is_backup" action="{{ route('project.index.filter') }}" method="post" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="is_backup" value="YES">
-                    </form>
-
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
                     <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                   </div>
@@ -84,7 +79,6 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Vapt Done</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{ $vapt }}
-                      <!-- <span class="text-danger text-sm font-weight-bolder">-2%</span> -->
                     </h5>
                   </div>
                 </div>
@@ -93,11 +87,10 @@
                     <span class="text-success text-sm font-weight-bolder">
                       <a href="{{ route('project.index') }}" class="view-btn" onclick="document.getElementById('is_vapt_done').submit();" > View </a>
                     </span>
-                    <form id="is_vapt_done" action="{{ route('project.index.filter') }}" method="post" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="is_vapt_done" value="YES">
-                    </form>
-
+                    
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                 </div>
               </div>
             </div>
@@ -120,10 +113,6 @@
                   <span class="text-success text-sm font-weight-bolder">
                     <a href="{{ route('project.index') }}" class="view-btn" onclick="document.getElementById('is_dr').submit();" > View </a>
                   </span>
-                  <form id="is_dr" action="{{ route('project.index.filter') }}" method="post" style="display: none;">
-                      @csrf
-                      <input type="hidden" name="is_dr" value="YES">
-                  </form>
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
                     <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                   </div>
@@ -134,6 +123,12 @@
           </div>
         </div>
       </div>
+
+
+<form id="is_dr" action="{{ route('project.index.filter') }}" method="post" >
+@csrf
+<input type="hidden" name="is_dr" value="YES">
+</form>
       
       
       <div class="row my-4">
@@ -269,6 +264,17 @@
       </div>
 
       <!-- Footer Section -->
+
+<form id="is_vapt_done" action="{{ route('project.index.filter') }}" method="post" >
+@csrf
+<input type="hidden" name="is_vapt_done" value="YES">
+</form>
+
+<form id="is_backup" action="{{ route('project.index.filter') }}" method="post" >
+@csrf
+<input type="hidden" name="is_backup" value="YES">
+</form>
+
 
     </div>
   </main>

@@ -60,6 +60,24 @@
                                     <option value="{{$database->name}}">{{$database->name}}</option>
                                   @endforeach
                                 </select>
+
+                                <select  name="is_dr" id="">
+                                    <option selected disabled value="">DR Conf.</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                                <select  name="is_vapt_done" id="">
+                                    <option selected disabled value="">Vapt Done</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                                <select  name="is_backup" id="">
+                                    <option selected disabled value="">Is Back-Up Configured</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                                
+                                
                                 <input type="text" name="text" id="">
                                 <input type="submit" value="Search">
                               </form>
