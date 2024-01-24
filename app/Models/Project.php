@@ -80,18 +80,11 @@ class Project extends Model
             return $project;
     }
 
-    public function storeImportRow($row){
-
-        echo "<pre>"; print_r($row);
-        dd('done');
-        $project->operating_system          =   $row['operating_system'];
-        $project->language                  =   $row['language'];
-        $project->framework                 =   $row['framework'];
-        $project->database                  =   $row['database'];
+    public function storeImportRow($row, $language_id, $operating_system_id, $framework_id, $database_id){
+        // dd($row);
+        // echo "sdsd";
+        // echo $language_id.'-'.$operating_system_id.'-'.$framework_id.'-'.$database_id; die;
         
-
-
-
         $project    =   new Project();
 
         $project->name                      =   $row['name'];
@@ -101,17 +94,24 @@ class Project extends Model
         $project->ip                        =   $row['ip'];
         $project->secondary_ip              =   $row['secondary_ip'];
 
+        $project->operating_system          =   $operating_system_id;
+        $project->language                  =   $language_id;
+        $project->framework                 =   $framework_id;
+        $project->database                  =   $database_id;
+
         $project->operating_system_version  =   $row['operating_system_version'];
         $project->language_version          =   $row['language_version'];
         $project->framework_version         =   $row['framework_version'];
         $project->database_version          =   $row['database_version'];
 
-        $project->is_exposed_to_content     =   $row['is_exposed_to_content'];
-        $project->is_dr                     =   $row['is_dr'];
+        $project->is_exposed_to_content     =   $row['is_exposed_to_internet'];
+        $project->is_dr                     =   $row['is_configured'];
         $project->is_vapt_done              =   $row['is_vapt_done'];
         $project->is_backup                 =   $row['is_backup'];
 
         $project->save();
+
+        return $project;
     }
 
 }
