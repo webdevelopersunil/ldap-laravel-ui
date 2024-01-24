@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ManageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -39,6 +40,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users/list', [UserController::class, 'list'])->name('users.list');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users/update', [UserController::class, 'update'])->name('users.update');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/import', [ImportController::class, 'index'])->name('import.index');
+    Route::post('/import/store', [ImportController::class, 'store'])->name('import.store');
+
 });
 
 Route::group(['middleware' => ['auth']], function () {

@@ -24,8 +24,7 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->all());
-
+        
         $user   =   Auth::user();
         $by     =  $request->by == 'asc' ? 'ASC' : 'DESC';
         $query  =   Project::query();

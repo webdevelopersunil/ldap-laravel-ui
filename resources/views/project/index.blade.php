@@ -23,8 +23,11 @@
                                     <h5 class="mb-0"></h5>
                                 </div>
                                 <a href="{{ route('project.create') }}" class="btn bg-gradient-primary btn-sm mb-0"
-                                    type="button">+&nbsp;{{ __('Add Project') }}</a>
-                                <!-- <a href="" id="chooseTemplates" onclick="alert('dddd');" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Add Project') }}</a> -->
+                                    type="button">+&nbsp;{{ __('Add Project') }}
+                                </a>
+                                <a href="{{ route('import.index') }}" class="btnStick btn bg-gradient-primary btn-sm mb-0"
+                                    type="button">+&nbsp;{{ __('Import') }}
+                                </a>
                             </div>
                         </div>
                         <div class="card-header pb-0">
