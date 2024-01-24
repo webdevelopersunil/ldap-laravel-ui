@@ -63,10 +63,10 @@ class ImportController extends Controller{
 
                             // check for the Database, Framework, Language and Operating System
 
-                            // $islanguageExist            =   Language::where('name', $row[''])->first();
-                            // $isOperatingSystemExist     =   OperatingSystem::where('name', $row[''])->first();
-                            // $isFrameworkExist           =   Framework::where('name', $row[''])->first();
-                            // $isDatabaseExist            =   DatabaseLists::where('name', $row[''])->first();
+                            $islanguageExist            =   Language::where('name', $row['language'])->first();
+                            $isOperatingSystemExist     =   OperatingSystem::where('name', $row['operating_system'])->first();
+                            $isFrameworkExist           =   Framework::where('name', $row['framework'])->first();
+                            $isDatabaseExist            =   DatabaseLists::where('name', $row['database'])->first();
                         }
 
                     });
