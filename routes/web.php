@@ -34,6 +34,21 @@ Auth::routes();
 //     return redirect()->route('home');
 // });
 
+Route::get('/download-sample', function () {
+    $pathToFile = storage_path('app/public/sample/download.xlsx');
+
+    // Check if the file exists
+    if (file_exists($pathToFile)) {
+        
+        return Response::download($pathToFile, 'sample_download.xlsx');
+
+    } else {
+        
+        abort(404);
+    }
+
+})->name('download.sample');
+
 Route::group(['middleware' => ['auth']], function () {
 
     // Manage Role

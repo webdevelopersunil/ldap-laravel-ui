@@ -39,10 +39,12 @@ class ImportController extends Controller{
                 
                 // Read the CSV file
                 $this->convertSnakeCase($pathToFile);
+
+                return redirect()->back()->with('success', 'Websites detail has been imported');
             }
             
         }else{
-            dd('not return');
+            return redirect()->back();
             // (new Project)->storeProject($request,NULL);
         }
     }
@@ -52,61 +54,56 @@ class ImportController extends Controller{
         $rows   =   SimpleExcelReader::create($pathToFile)->headersToSnakeCase()->getRows()
                     
             ->each(function(array $row) {
-                // echo "<pre>"; print_r($row);
+                
                 // Check if the Website link is already existed. If existed update it with latest detils
                 $isUrlExist =   Project::where('url', $row['url'])->first();
 
+                // check for the Database, Framework, Language and Operating System
+                $islanguageExist            =   Language::where('name', 'LIKE', '%' . $row['language'] . '%')->first();
+                if($islanguageExist){
+                    $language_id            =   $islanguageExist->id;
+                }else{
+                    $language               =   Language::create(['name'=>$row['language']]);
+                    $language_id            =   $language->id;
+                }
+                
+                $isOperatingSystemExist     =   OperatingSystem::where('name', 'LIKE', '%' . $row['operating_system'] . '%')->first();
+                if($isOperatingSystemExist){
+                    $operating_system_id            =   $isOperatingSystemExist->id;
+                }else{
+                    $os            =   OperatingSystem::create(['name'=>$row['operating_system']]);
+                    $operating_system_id    =   $os->id;
+                }
+
+                $isFrameworkExist           =   Framework::where('name', 'LIKE', '%' . $row['framework'] . '%')->first();
+                if($isFrameworkExist){
+                    $framework_id         =   $isFrameworkExist->id;
+                }else{
+                    $framework            =   Framework::create(['name'=>$row['framework']]);
+                    $framework_id           =   $framework->id;
+                }
+
+                $isDatabaseExist            =   DatabaseLists::where('name', 'LIKE', '%' . $row['database'] . '%')->first();
+                if($isDatabaseExist){
+                    $database_id            =   $isDatabaseExist->id;
+                }else{
+                    $database            =   DatabaseLists::create(['name'=>$row['database']]);
+                    $database_id    =   $language->id;
+                }
+
                 if( $isUrlExist ){
 
-                    dd('true');
+                    (new Project)->updateImportRow($isUrlExist->id, $row, $language_id, $operating_system_id, $framework_id, $database_id);
 
                 }else{
 
-                    // check for the Database, Framework, Language and Operating System
-
-                    $islanguageExist            =   Language::where('name', 'LIKE', '%' . $row['language'] . '%')->first();
-                    if($islanguageExist){
-                        $language_id            =   $islanguageExist->id;
-                    }else{
-                        $language               =   Language::create(['name'=>$row['language']]);
-                        $language_id            =   $language->id;
-                    }
-                    
-                    $isOperatingSystemExist     =   OperatingSystem::where('name', 'LIKE', '%' . $row['operating_system'] . '%')->first();
-                    if($isOperatingSystemExist){
-                        $operating_system_id            =   $isOperatingSystemExist->id;
-                    }else{
-                        $os            =   OperatingSystem::create(['name'=>$row['operating_system']]);
-                        $operating_system_id    =   $os->id;
-                    }
-
-                    $isFrameworkExist           =   Framework::where('name', 'LIKE', '%' . $row['framework'] . '%')->first();
-                    if($isFrameworkExist){
-                        $framework_id         =   $isFrameworkExist->id;
-                    }else{
-                        $framework            =   Framework::create(['name'=>$row['framework']]);
-                        $framework_id           =   $framework->id;
-                    }
-
-                    $isDatabaseExist            =   DatabaseLists::where('name', 'LIKE', '%' . $row['database'] . '%')->first();
-                    if($isDatabaseExist){
-                        $database_id            =   $isDatabaseExist->id;
-                    }else{
-                        $database            =   DatabaseLists::create(['name'=>$row['database']]);
-                        $database_id    =   $language->id;
-                    }
-
-                    // echo $language_id.'-'.$operating_system_id.'-'.$framework_id.'-'.$database_id; die;
-
-                    $stattus    =   (new Project)->storeImportRow($row, $language_id, $operating_system_id, $framework_id, $database_id);
+                    (new Project)->storeImportRow($row, $language_id, $operating_system_id, $framework_id, $database_id);
 
                 }
                 
             });
+
             
-            return redirect()->route('project.index');
     }
 
-    
-    
 }

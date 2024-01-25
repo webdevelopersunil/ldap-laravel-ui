@@ -2,7 +2,7 @@
 @extends('layouts.user')
 
 @section('content')
-  
+
   @include('partials.sidebar')
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -23,7 +23,8 @@
                     <div>
                         <h5 class="mb-0"></h5>
                     </div>
-                    <!-- <a href="{{ route('project.index') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Go Back') }}</a> -->
+                    <!-- <a href="" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;{{ __('Download Sample File') }}</a> -->
+                    <a href="{{ route('download.sample') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button" download="+Download Sample File">+&nbsp;{{ __('Download Sample File') }}</a>
                 </div>
             </div>
 
