@@ -37,14 +37,14 @@ class UserController extends Controller
 
     public function update(Request $request){
         
-        $user = Auth::user();
+        $user    =   User::find($request->id);
+
         // Find the role by its ID
         $role = Role::find($request->role);
-
+        
         if ($user && $role) {
             // Sync the user's roles with the selected role
             $user->syncRoles([$role->name]);
-    
     
             // Additional logic or response
             return redirect()->route('users.list')->with('success', 'Role updated successfully.');
@@ -53,6 +53,5 @@ class UserController extends Controller
             return redirect()->route('users.list')->with('error', 'User or role not found.');
         }
     }
-
-
+    
 }
