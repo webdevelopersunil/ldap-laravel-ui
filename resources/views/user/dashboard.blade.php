@@ -32,11 +32,13 @@
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                    <span class="text-success text-sm font-weight-bolder">
+                    <!-- <span class="text-success text-sm font-weight-bolder">
                       <a href="{{ route('project.index') }}" class="view-btn" > View </a>
-                    </span>
+                    </span> -->
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="{{ route('project.index') }}" >
+                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -58,12 +60,14 @@
                 </div>
                 <div class="col-4 text-end">
 
-                    <span class="text-success text-sm font-weight-bolder">
+                    <!-- <span class="text-success text-sm font-weight-bolder">
                     <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_backup').submit();">View</a>
-                    </span>
+                    </span> -->
 
                     <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                      <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_backup').submit();" >
+                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                      </a>
                     </div>
 
                 </div>
@@ -85,12 +89,14 @@
                 </div>
                 <div class="col-4 text-end">
 
-                    <span class="text-success text-sm font-weight-bolder">
+                    <!-- <span class="text-success text-sm font-weight-bolder">
                       <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_vapt_done').submit();" > View </a>
-                    </span>
+                    </span> -->
                     
                     <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                      <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_vapt_done').submit();" >
+                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                      </a>
                     </div>
                 </div>
               </div>
@@ -111,11 +117,14 @@
                 </div>
                 <div class="col-4 text-end">
                   
-                  <span class="text-success text-sm font-weight-bolder">
+                  <!-- <span class="text-success text-sm font-weight-bolder">
                     <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_dr').submit();" > View </a>
-                  </span>
+                  </span> -->
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_dr').submit();" >
+                      <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                    </a>
+                    
                   </div>
 
                 </div>
