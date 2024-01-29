@@ -22,8 +22,7 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         
         $user   =   Auth::user();
         $by     =  $request->by == 'asc' ? 'ASC' : 'DESC';
@@ -31,48 +30,50 @@ class ProjectController extends Controller
 
         // Role Specific
         if(!$user->hasRole('Admin')){
+
             $query->where('user_id', $user->id);
+        }
+
+        // Onclick Filteration
+        if (isset($request->os) && !empty($request->os)) {
+
+            $query->where('operating_system', 'LIKE', '%' . $request->os . '%');
+        }
+        if (isset($request->language) && !empty($request->language)) {
+
+            $query->where('language', 'LIKE', '%' . $request->language . '%');
+        }
+        if (isset($request->framework) && !empty($request->framework)) {
+
+            $query->where('framework', 'LIKE', '%' . $request->framework . '%');
+        }
+        if (isset($request->database) && !empty($request->database)) {
+
+            $query->where('database', 'LIKE', '%' . $request->database . '%');
+        }
+
+        if (isset($request->is_backup) && !empty($request->is_backup)) {
+
+            $query->where('is_backup', 'LIKE', '%' . $request->is_backup . '%');
+        }
+        if (isset($request->is_vapt_done) && !empty($request->is_vapt_done)) {
+
+            $query->where('is_vapt_done', 'LIKE', '%' . $request->is_vapt_done . '%');
+        }
+        if (isset($request->is_dr) && !empty($request->is_dr)) {
+
+            $query->where('is_dr', 'LIKE', '%' . $request->is_dr . '%');
         }
 
         // Filteration section
         if ($request->isMethod('post')){
             
-            if (isset($request->os) && !empty($request->os)) {
-
-                $query->where('operating_system', 'LIKE', '%' . $request->os . '%');
-            }
-            if (isset($request->language) && !empty($request->language)) {
-
-                $query->where('language', 'LIKE', '%' . $request->language . '%');
-            }
-            if (isset($request->framework) && !empty($request->framework)) {
-
-                $query->where('framework', 'LIKE', '%' . $request->framework . '%');
-            }
-            if (isset($request->database) && !empty($request->database)) {
-
-                $query->where('database', 'LIKE', '%' . $request->database . '%');
-            }
             if (isset($request->text) && !empty($request->text)) {
                 
                 $query->where(function ($query) use ($request) {
                     $query->where('url', 'LIKE', '%' . $request->text . '%')
                           ->orWhere('name', 'LIKE', '%' . $request->text . '%');
                 });
-            }
-
-            // Dasboard Filter
-            if (isset($request->is_backup) && !empty($request->is_backup)) {
-
-                $query->where('is_backup', 'LIKE', '%' . $request->is_backup . '%');
-            }
-            if (isset($request->is_vapt_done) && !empty($request->is_vapt_done)) {
-
-                $query->where('is_vapt_done', 'LIKE', '%' . $request->is_vapt_done . '%');
-            }
-            if (isset($request->is_dr) && !empty($request->is_dr)) {
-
-                $query->where('is_dr', 'LIKE', '%' . $request->is_dr . '%');
             }
         }
 

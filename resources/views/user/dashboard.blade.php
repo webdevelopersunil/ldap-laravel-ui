@@ -65,7 +65,7 @@
                     </span> -->
 
                     <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                      <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_backup').submit();" >
+                      <a href="javascript:void(0)" class="view-btn" onclick="window.location.href = '{{ route('project.index') }}?is_backup=YES'" >
                         <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                       </a>
                     </div>
@@ -94,7 +94,7 @@
                     </span> -->
                     
                     <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                      <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_vapt_done').submit();" >
+                      <a href="javascript:void(0)" class="view-btn" onclick="window.location.href = '{{ route('project.index') }}?is_vapt_done=YES'" >
                         <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                       </a>
                     </div>
@@ -121,7 +121,7 @@
                     <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_dr').submit();" > View </a>
                   </span> -->
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <a href="javascript:void(0)" class="view-btn" onclick="document.getElementById('is_dr').submit();" >
+                    <a href="javascript:void(0)" class="view-btn" onclick="window.location.href = '{{ route('project.index') }}?is_dr=YES'" >
                       <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
                     </a>
                     
@@ -268,22 +268,6 @@
       </div>
 
       <!-- Footer Section -->
-
-<form id="is_vapt_done" action="{{ route('project.index.filter') }}" method="post" >
-  @csrf
-  <input type="hidden" name="is_vapt_done" value="YES">
-</form>
-
-<form id="is_backup" action="{{ route('project.index.filter') }}" method="post">
-  @csrf
-  <input type="hidden" name="is_backup" value="YES">
-</form>
-
-<form id="is_dr" action="{{ route('project.index.filter') }}" method="post" >
-@csrf
-<input type="hidden" name="is_dr" value="YES">
-</form>
-
 
     </div>
   </main>

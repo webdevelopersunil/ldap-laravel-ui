@@ -28,59 +28,62 @@
                             </div>
                         </div>
                         <div class="card-header pb-0">
-                          <div class="d-flex flex-row justify-content-between">
-                              <div>
-                                  <h5 class="mb-0"></h5>
-                              </div>
-                              <form action="{{route('project.index.filter')}}" method="post" >
-                                @csrf
-                                <select name="os" id="">
-                                  <option selected disabled >OS</option>
-                                  @foreach($operatingSystems as $operatingSystem )
-                                    <option value="{{$operatingSystem->name}}">
-                                      {{$operatingSystem->name}}
-                                    </option>
-                                  @endforeach
-                                </select>
-                                <select name="language" id="">
-                                  <option selected disabled value="">Languages</option>
-                                  @foreach($languages as $language)
-                                    <option value="{{$language->name}}">{{$language->name}}</option>
-                                  @endforeach
-                                </select>
-                                <select name="framework" id="">
-                                  <option selected disabled value="">Frameworks</option>
-                                  @foreach($frameworks as $framework)
-                                    <option value="{{$framework->name}}">{{$framework->name}}</option>
-                                  @endforeach
-                                </select>
-                                <select  name="database" id="">
-                                  <option selected disabled value="">Databases</option>
-                                  @foreach($databases as $database)
-                                    <option value="{{$database->name}}">{{$database->name}}</option>
-                                  @endforeach
-                                </select>
 
-                                <select  name="is_dr" id="">
-                                    <option selected disabled value="">DR Conf.</option>
-                                    <option value="YES">YES</option>
-                                    <option value="NO">NO</option>
-                                </select>
-                                <select  name="is_vapt_done" id="">
-                                    <option selected disabled value="">Vapt Done</option>
-                                    <option value="YES">YES</option>
-                                    <option value="NO">NO</option>
-                                </select>
-                                <select  name="is_backup" id="">
-                                    <option selected disabled value="">Is Back-Up Configured</option>
-                                    <option value="YES">YES</option>
-                                    <option value="NO">NO</option>
-                                </select>
-                                
-                                
-                                <input type="text" name="text" id="">
-                                <input type="submit" value="Search">
-                              </form>
+                            <div class="d-flex flex-row justify-content-between">
+                                <div>
+                                    <select name="os" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?os=' + this.value);" >
+                                        <option selected disabled>OS</option>
+                                        @foreach($operatingSystems as $operatingSystem)
+                                            <option value="{{$operatingSystem->id}}">{{$operatingSystem->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <select name="language" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?language=' + this.value);" >
+                                        <option selected disabled value="">Languages</option>
+                                        @foreach($languages as $language)
+                                            <option value="{{$language->id}}">{{$language->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <select name="framework"  onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?framework=' + this.value);" >
+                                        <option selected disabled value="">Frameworks</option>
+                                        @foreach($frameworks as $framework)
+                                            <option value="{{$framework->id}}">{{$framework->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    <select  name="database" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?database=' + this.value);" >
+                                        <option selected disabled value="">Databases</option>
+                                        @foreach($databases as $database)
+                                            <option value="{{$database->id}}">{{$database->name}}</option>
+                                        @endforeach
+                                    </select>
+                                        
+                                    <select  name="is_dr" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?is_dr=' + this.value);" >
+                                            <option selected disabled value="">DR Conf.</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                    </select>
+
+                                    <select  name="is_vapt_done" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?is_vapt_done=' + this.value);" >
+                                            <option selected disabled value="">Vapt Done</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                    </select>
+
+                                    <select  name="is_backup" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?is_backup=' + this.value);" >
+                                            <option selected disabled value="">Is Back-Up Configured</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                    </select>
+                                </div>
+
+                                <form action="{{route('project.index.filter')}}" method="post" >
+                                    @csrf
+                                    <input type="text" name="text" id="">
+                                    <input type="submit" value="Search">
+                                </form>
+
                           </div>
                       </div>
                         <div class="card-body px-0 pt-0 pb-2">
@@ -264,15 +267,6 @@
                                                         </p>
                                                     </td>
 
-
-                                                    <!-- <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success">Online</span>
-                            </td> -->
-
-                                                    <!-- <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                            </td> -->
-
                                                     <td class="align-middle">
                                                         <a href="{{ route('view.website',$project->id) }}"
                                                             class="text-secondary font-weight-bold text-xs"
@@ -341,15 +335,6 @@
                                                     <p class="text-xs font-weight-bold mb-0"></p>
                                                 </td>
 
-
-                                                <!-- <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success">Online</span>
-                            </td> -->
-
-                                                <!-- <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                            </td> -->
-
                                                 <td class="align-middle">
                                                     <p class="text-xs font-weight-bold mb-0"></p>
                                                 </td>
@@ -371,7 +356,12 @@
     </main>
 
     <script>
-      
+        document.getElementById('osSelect').onchange = function() {
+            var selectedOs = this.value;
+            if (selectedOs) {
+                window.location.href = "{{ route('project.index') }}?os=" + selectedOs;
+            }
+        };
     </script>
 
 
