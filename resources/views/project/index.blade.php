@@ -31,50 +31,51 @@
 
                             <div class="d-flex flex-row justify-content-between">
                                 <div>
-                                    <select name="os" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?os=' + this.value);" >
-                                        <option selected disabled>OS</option>
-                                        @foreach($operatingSystems as $operatingSystem)
-                                            <option value="{{$operatingSystem->id}}">{{$operatingSystem->name}}</option>
-                                        @endforeach
-                                    </select>
+                                <select name="os" onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?os=[^&]*/g, '') + '&os=' + this.value : '?os=' + this.value);">
+                                    <option selected disabled>OS</option>
+                                    @foreach($operatingSystems as $operatingSystem)
+                                        <option value="{{$operatingSystem->id}}" {{$operatingSystem->id == request()->query('os') ? 'selected' : ''}} >{{$operatingSystem->name}}</option>
+                                    @endforeach
+                                </select>
 
-                                    <select name="language" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?language=' + this.value);" >
+
+                                    <select name="language" onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?language=[^&]*/g, '') + '&language=' + this.value : '?language=' + this.value);" >
                                         <option selected disabled value="">Languages</option>
                                         @foreach($languages as $language)
-                                            <option value="{{$language->id}}">{{$language->name}}</option>
+                                            <option value="{{$language->id}}" {{$language->id == request()->query('language') ? 'selected' : ''}} >{{$language->name}}</option>
                                         @endforeach
                                     </select>
 
-                                    <select name="framework"  onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?framework=' + this.value);" >
+                                    <select name="framework"  onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?framework=[^&]*/g, '') + '&framework=' + this.value : '?framework=' + this.value);" >
                                         <option selected disabled value="">Frameworks</option>
                                         @foreach($frameworks as $framework)
-                                            <option value="{{$framework->id}}">{{$framework->name}}</option>
+                                            <option value="{{$framework->id}}" {{$framework->id == request()->query('framework') ? 'selected' : ''}} >{{$framework->name}}</option>
                                         @endforeach
                                     </select>
 
-                                    <select  name="database" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?database=' + this.value);" >
+                                    <select  name="database" onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?database=[^&]*/g, '') + '&database=' + this.value : '?database=' + this.value);" >
                                         <option selected disabled value="">Databases</option>
                                         @foreach($databases as $database)
-                                            <option value="{{$database->id}}">{{$database->name}}</option>
+                                            <option value="{{$database->id}}" {{$database->id == request()->query('database') ? 'selected' : ''}} >{{$database->name}}</option>
                                         @endforeach
                                     </select>
                                         
-                                    <select  name="is_dr" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?is_dr=' + this.value);" >
+                                    <select  name="is_dr" onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?is_dr=[^&]*/g, '') + '&is_dr=' + this.value : '?is_dr=' + this.value);" >
                                             <option selected disabled value="">DR Conf.</option>
-                                            <option value="YES">YES</option>
-                                            <option value="NO">NO</option>
+                                            <option value="YES" {{ 'YES'== request()->query('is_dr') ? 'selected' : ''}} >YES</option>
+                                            <option value="NO" {{'NO' == request()->query('is_dr') ? 'selected' : ''}} >NO</option>
                                     </select>
 
-                                    <select  name="is_vapt_done" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?is_vapt_done=' + this.value);" >
+                                    <select  name="is_vapt_done" onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?is_vapt_done=[^&]*/g, '') + '&is_vapt_done=' + this.value : '?is_vapt_done=' + this.value);" >
                                             <option selected disabled value="">Vapt Done</option>
-                                            <option value="YES">YES</option>
-                                            <option value="NO">NO</option>
+                                            <option value="YES" {{'YES' == request()->query('is_vapt_done') ? 'selected' : ''}} >YES</option>
+                                            <option value="NO" {{'NO' == request()->query('is_vapt_done') ? 'selected' : ''}} >NO</option>
                                     </select>
 
-                                    <select  name="is_backup" onchange="this.options[this.selectedIndex].value && (window.location.href = '{{ route('project.index') }}?is_backup=' + this.value);" >
+                                    <select  name="is_backup" onchange="window.location.href = '{{ route('project.index') }}' + (location.search ? location.search.replace(/&?is_backup=[^&]*/g, '') + '&is_backup=' + this.value : '?is_backup=' + this.value);" >
                                             <option selected disabled value="">Is Back-Up Configured</option>
-                                            <option value="YES">YES</option>
-                                            <option value="NO">NO</option>
+                                            <option value="YES" {{'YES' == request()->query('is_backup') ? 'selected' : ''}} >YES</option>
+                                            <option value="NO" {{'NO' == request()->query('is_backup') ? 'selected' : ''}} >NO</option>
                                     </select>
                                 </div>
 
