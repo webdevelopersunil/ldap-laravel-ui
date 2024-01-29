@@ -53,5 +53,4 @@ class UserController extends Controller
             return redirect()->route('users.list')->with('error', 'User or role not found.');
         }
     }
-    
 }
